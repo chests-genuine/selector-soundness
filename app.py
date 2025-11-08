@@ -2,6 +2,7 @@
 import os
 import sys
 import json
+import time  # add this with your imports if not already there
 import argparse
 from typing import List, Set, Dict, Any, Tuple
 from web3 import Web3
@@ -14,6 +15,18 @@ def load_json(path: str) -> Any:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+def main() -> None:
+    start = time.time()   # <--- add here
+
+    # (existing code...)
+
+    ok = (len(missing_in_bytecode) == 0 and len(extra_in_bytecode) == 0 and (not args.allowed or len(allowed_violations) == 0))
+    
+    # Print duration summary
+    elapsed = time.time() - start
+    print(f"⏱️ Completed in {elapsed:.2f} seconds")
+
+    sys.exit(0 if ok else 2)
 
 
 
