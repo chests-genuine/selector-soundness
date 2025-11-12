@@ -8,6 +8,8 @@ import datetime as dt
 import pathlib
 import statistics
 from typing import Iterable, List, Tuple, Dict, Any
+# Explicit public API (extend as functions become stable)
+__all__: list[str] = []
 
 
 def _read_rows(
