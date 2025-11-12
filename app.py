@@ -1,4 +1,8 @@
 # app.py
+"""Application entrypoint and lightweight utilities.
+
+Importing this module has no side effects; all behavior is opt-in.
+"""
 import os
 import sys
 import json
