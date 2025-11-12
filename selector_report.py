@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+# ---- defaults (CSV columns) ----
+DEFAULT_ID_COL = "id"
+DEFAULT_TRUTH_COL = "y_true"
+DEFAULT_PRED_COL = "y_pred"
+DEFAULT_SELECTOR_COL = "selector"#!/usr/bin/env python3
 from __future__ import annotations
 
 import argparse
