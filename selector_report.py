@@ -10,7 +10,13 @@ import statistics
 from typing import Iterable, List, Tuple, Dict, Any
 import csv
 from pathlib import Path
+import logging
 
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    logger.addHandler(logging.NullHandler())
+    logger.propagate = False
+    __all__: list[str] = []
 DEFAULT_ENCODING: str = "utf-8"
 
 def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> list[dict[str, str]]:
