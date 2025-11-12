@@ -10,6 +10,16 @@ import statistics
 from typing import Iterable, List, Tuple, Dict, Any
 import csv
 from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    logger.addHandler(logging.NullHandler())
+    logger.propagate = False
+def setup_logging(level: str | int = "WARNING") -> None:
+    if isinstance(level, str):
+        level = level.upper()
+    logging.basicConfig(level=level, format="%(levelname)s %(name)s: %(message)s")
 
 DEFAULT_ENCODING: str = "utf-8"
 
