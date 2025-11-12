@@ -12,6 +12,17 @@ import csv
 from pathlib import Path
 
 DEFAULT_ENCODING: str = "utf-8"
+def fmt_float(x: float, places: int = 4) -> str:
+    try:
+        return f"{float(x):.{places}f}"
+    except Exception:
+        return "0.0000"
+
+def fmt_pct(x: float, places: int = 2) -> str:
+    try:
+        return f"{float(x) * 100:.{places}f}%"
+    except Exception:
+        return "0.00%"
 
 def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> list[dict[str, str]]:
     """Read CSV as list-of-dicts, with delimiter sniffing fallback."""
