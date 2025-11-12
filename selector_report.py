@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+from __future__ import annotations
+
+__version__: str = "0.2.0"
+__author__: str = "Contributors"
+
 from __future__ import annotations
 
 import argparse
