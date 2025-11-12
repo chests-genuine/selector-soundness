@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+from pathlib import Path
+
+def _ensure_parent_dir(path: str | Path) -> Path:
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    return p
+
+def _write_text(path: str | Path, text: str, *, encoding: str = "utf-8") -> Path:
+    p = _ensure_parent_dir(path)
+    p.write_text(text, encoding=encoding)
+    return p
+
+__all__.extend(["_ensure_parent_dir", "_write_text"])
 
 import argparse
 import collections
