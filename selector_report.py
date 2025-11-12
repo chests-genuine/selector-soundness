@@ -12,7 +12,9 @@ import csv
 from pathlib import Path
 
 DEFAULT_ENCODING: str = "utf-8"
-
+def safe_div(n: float, d: float) -> float:
+    """Return n/d, or 0.0 if d == 0."""
+    return n / d if d else 0.0
 def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> list[dict[str, str]]:
     """Read CSV as list-of-dicts, with delimiter sniffing fallback."""
     p = Path(path)
