@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+import logging
+
+# Quiet, library-friendly logger
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    logger.addHandler(logging.NullHandler())
+    logger.propagate = False
+
+def setup_logging(level: str | int = "WARNING") -> None:
+    """Configure root logging once, idempotently."""
+    if isinstance(level, str):
+        level = level.upper()
+    logging.basicConfig(level=level, format="%(levelname)s %(name)s: %(message)s")
 
 import argparse
 import collections
