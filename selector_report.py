@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+from contextlib import contextmanager
+from time import perf_counter
+
+@contextmanager
+def time_block(name: str):
+    start = perf_counter()
+    try:
+        yield
+    finally:
+        ms = (perf_counter() - start) * 1000.0
+        logger.debug("%s took %.2f ms", name, ms)
+
+__all__.append("time_block")
 
 import argparse
 import collections
