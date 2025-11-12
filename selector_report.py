@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+DEFAULT_ID_COL = "id"
+DEFAULT_TRUTH_COL = "y_true"
+DEFAULT_PRED_COL = "y_pred"
+DEFAULT_SELECTOR_COL = "selector"#!/usr/bin/env python3
+
 from __future__ import annotations
 
 import argparse
@@ -7,6 +11,13 @@ import csv
 import datetime as dt
 import pathlib
 import statistics
+import logging
+
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    logger.addHandler(logging.NullHandler())
+    logger.propagate = False
+
 from typing import Iterable, List, Tuple, Dict, Any
 import csv
 from pathlib import Path
