@@ -8,6 +8,25 @@ import datetime as dt
 import pathlib
 import statistics
 from typing import Iterable, List, Tuple, Dict, Any
+import csv
+from pathlib import Path
+
+DEFAULT_ENCODING: str = "utf-8"
+
+def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> list[dict[str, str]]:
+    """Read CSV as list-of-dicts, with delimiter sniffing fallback."""
+    p = Path(path)
+    with p.open("r", encoding=encoding, newline="") as f:
+        sample = f.read(1024)
+        f.seek(0)
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=[",", ";", "\t", "|"])
+        except Exception:
+            dialect = csv.excel
+        reader = csv.DictReader(f, dialect=dialect)
+        return [ {k: (v or "").strip() for k, v in row.items()} for row in reader ]
+
+__all__.extend(["read_csv_dicts", "DEFAULT_ENCODING"])
 
 
 def _read_rows(
