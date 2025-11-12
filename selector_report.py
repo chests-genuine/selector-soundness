@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:  # pragma: no cover
+    # Future type-only imports (Protocol, TypedDict, etc.) go here
+    pass
 
 import argparse
 import collections
