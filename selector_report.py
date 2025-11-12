@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+"""Generate selector soundness reports (CLI + helpers). Importing has no side effects."""
+
 from __future__ import annotations
 
 import argparse
