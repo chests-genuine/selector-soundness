@@ -19,6 +19,9 @@ def checksum(addr: str) -> str:
         sys.exit(2)
     return Web3.to_checksum_address(addr)
 
+def _confusion(
+    y_true: Iterable[str], y_pred: Iterable[str]
+) -> Tuple[List[str], Dict[Tuple[str, str], int]]:
 
 def connect(rpc: str) -> Web3:
     w3 = Web3(Web3.HTTPProvider(rpc, request_kwargs={"timeout": 30}))
