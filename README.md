@@ -49,9 +49,15 @@ You’ll see:
 - Allowed-policy result when provided
 Exit code is 0 if no inconsistencies are found, otherwise 2 (useful for CI pipelines).
 
-Notes
-- Selector extraction via PUSH4 is heuristic but effective for standard Solidity dispatch. Optimized or Yul-heavy contracts may require deeper analysis.
-- For proxy setups, run this tool against the implementation contract address.
-- Works across mainnet, L2s, and private devnets. Just point the RPC accordingly.
-- This tool does not validate storage layout, event topics, or source verification; it focuses solely on the function selector surface for quick soundness checks.
-- Relevant to security posture in Aztec-bridged L1s and Zama-integrated deployments where minimizing the callable surface is critical.
+## Notes
+
+- Selector extraction via `PUSH4` is heuristic but effective for standard Solidity
+  dispatch. Optimized or Yul-heavy contracts may require deeper analysis.
+- For proxy setups, run this tool against the **implementation** contract address.
+- Works across mainnet, L2s, and private devnets — just point the `RPC_URL` or
+  `--rpc` to the right endpoint.
+- This tool does **not** validate storage layout, event topics, or source verification;
+  it focuses solely on the function selector surface for quick soundness checks.
+- Particularly relevant for Aztec-bridged L1s and Zama-integrated deployments
+  where minimizing the callable surface is critical.
+
