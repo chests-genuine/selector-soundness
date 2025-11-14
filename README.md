@@ -12,15 +12,17 @@ How it works
    - extra selectors (in bytecode but not in ABI)
 5) Optionally checks that all bytecode selectors are included in a provided allowed-list.
 
-Installation
-1) Install Python 3.9+.
-2) Install dependencies:
-   pip install web3 eth-abi eth-utils
-3) Provide an EVM RPC endpoint:
-   export RPC_URL=<your_rpc_url>
-   or pass --rpc explicitly.
+## Installation
 
-Usage
+1. Install **Python 3.9+**.
+2. Install dependencies:
+
+   ```bash
+   pip install web3 eth-abi eth-utils
+3. Provide an EVM RPC endpoint, either via env:
+export RPC_URL="https://your-node.example"
+
+##Usage
 Minimal run (informational soundness scan):
    python app.py --address 0xYourContract --abi ./YourContract.abi.json
 
