@@ -150,6 +150,11 @@ def parse_args() -> argparse.Namespace:
         description="Scan selector surface over a block range and report changes.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
+        p.add_argument(
+        "--include-eoa",
+        action="store_true",
+        help="Do not warn when target has no contract code (EOA)",
+    )
     p.add_argument("--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
     p.add_argument("--address", required=True, help="Contract address to analyze")
     p.add_argument("--abi", required=True, help="Path to ABI JSON file")
@@ -201,6 +206,10 @@ def main() -> None:
             print("🔄 Swapped start/end for ascending range.", file=sys.stderr)
 
     addr = checksum(args.address)
+    # Quick check for code at latest
+    tmp_w3 = connect(args.rpc, timeout=args.timeout)
+    if not tmp_w3.eth.get_code(addr) and not args.include_eoa:
+        print("⚠️  Target has no contract code at latest — likely an EOA.", file=sys.stderr)
 
     # Load ABI & selectors
     abi_json = load_json(args.abi)
