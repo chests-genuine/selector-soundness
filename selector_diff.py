@@ -1,3 +1,11 @@
+    """
+    Heuristically scan EVM runtime bytecode for PUSH4 opcodes and collect
+    the 4-byte immediates as candidate function selectors (hex without 0x).
+
+    Note: this assumes a dispatcher that uses PUSH4 <selector> patterns,
+    which is common but not guaranteed (e.g. some proxies may behave differently).
+    """
+
 import os
 import sys
 import json
