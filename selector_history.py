@@ -146,10 +146,11 @@ def diff_selector_sets(prev: Set[str], curr: Set[str]) -> Tuple[List[str], List[
 
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(
+     p = argparse.ArgumentParser(
         description="Scan selector surface over a block range and report changes.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
+
     p.add_argument("--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
     p.add_argument("--address", required=True, help="Contract address to analyze")
     p.add_argument("--abi", required=True, help="Path to ABI JSON file")
