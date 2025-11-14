@@ -1,3 +1,10 @@
+    """
+    Return mapping: signature_str -> 4-byte hex selector (no 0x).
+    Only includes entries with type == 'function'.
+
+    Example key: "transfer(address,uint256)" -> "a9059cbb".
+    """
+
 from __future__ import annotations
 
 import os
