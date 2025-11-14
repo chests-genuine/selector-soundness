@@ -112,6 +112,7 @@ def parse_push4_selectors(bytecode: bytes) -> Set[str]:
 def selector_commitment(selectors: Set[str]) -> str:
     """Compute keccak over lexicographically sorted selectors (as bytes)."""
     ordered = sorted(selectors)
+    # Hash of empty set is keccak(b"") if there are no selectors.
     buf = b"".join(bytes.fromhex(s) for s in ordered)
     return "0x" + keccak(buf).hex()
 
