@@ -10,6 +10,10 @@ from typing import Dict, List, Set, Tuple, Any, Optional
 from web3 import Web3
 from eth_utils import keccak
 
+SelectorHex = str            # 8 hex chars, no 0x
+SelectorSet = Set[SelectorHex]
+SignatureMap = Dict[str, SelectorHex]  # "foo(uint256)" -> selector
+
 DEFAULT_RPC = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/YOUR_INFURA_KEY")
 RPC_TIMEOUT = int(os.getenv("RPC_TIMEOUT", "30"))
 
