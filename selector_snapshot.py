@@ -142,7 +142,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Emit JSON snapshot to stdout (in addition to logs)",
     )
-    ap.add_argument(
+      ap.add_argument(
         "--quiet",
         action="store_true",
         help="Suppress human-readable logs on stderr",
