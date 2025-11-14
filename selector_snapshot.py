@@ -42,6 +42,7 @@ def load_json(path: str) -> Any:
 
 
 def fmt_utc(ts: int) -> str:
+    """Format a UNIX timestamp (seconds) as a UTC time string."""
     return time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(ts))
 
 
