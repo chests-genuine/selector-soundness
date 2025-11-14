@@ -340,9 +340,11 @@ def main() -> None:
             prev_selectors = selectors_curr
             prev_block = info["blockNumber"]
 
-    finally:
+      finally:
         if csv_file is not None:
+            # DictWriter does not need explicit close; closing the file is enough.
             csv_file.close()
+
 
     elapsed = time.monotonic() - t0
     if not args.quiet:
