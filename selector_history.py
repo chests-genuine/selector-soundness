@@ -96,6 +96,11 @@ def parse_push4_selectors(bytecode: bytes) -> Set[str]:
 
 # --- core logic ------------------------------------------------------------
 
+def selector_commitment(selectors: Set[str]) -> str:
+    """Compute keccak over lexicographically sorted selectors (as bytes)."""
+    ordered = sorted(selectors)
+    buf = b"".join(bytes.fromhex(s) for s in ordered)
+    return "0x" + keccak(buf).hex()
 
 def scan_block(
     w3: Web3,
@@ -122,7 +127,9 @@ def scan_block(
     missing = sorted(abi_selectors - byte_selectors)
     extra = sorted(byte_selectors - abi_selectors)
 
+
     return {
+        "selectorCommitment": selector_commitment(byte_selectors),
         "blockNumber": block_number,
         "timestamp": int(blk.timestamp),
         "timestampUtc": fmt_utc(blk.timestamp),
