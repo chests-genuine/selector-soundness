@@ -233,6 +233,13 @@ def main() -> None:
 
     if args.json:
         print(json.dumps(snapshot, indent=2, sort_keys=True))
+        
+# Example:
+#   python selector_snapshot.py \
+#       --address 0xYourContract \
+#       --abi ./YourContract.abi.json \
+#       --block latest \
+#       --json
 
 
 if __name__ == "__main__":
