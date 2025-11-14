@@ -150,11 +150,11 @@ def parse_args() -> argparse.Namespace:
         description="Scan selector surface over a block range and report changes.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    p.add_argument("--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
-    p.add_argument("--address", required=True, help="Contract address to analyze")
+     p.add_argument("-r", "--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
+    p.add_argument("-a", "--address", required=True, help="Contract address to analyze")
     p.add_argument("--abi", required=True, help="Path to ABI JSON file")
-    p.add_argument("--start", type=int, required=True, help="Start block (inclusive)")
-    p.add_argument("--end", type=int, required=True, help="End block (inclusive)")
+    p.add_argument("-s", "--start", type=int, required=True, help="Start block (inclusive)")
+    p.add_argument("-e", "--end", type=int, required=True, help="End block (inclusive)")
     p.add_argument(
         "--step",
         type=int,
