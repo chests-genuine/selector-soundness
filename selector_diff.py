@@ -1,3 +1,10 @@
+"""Utility helpers for evaluating classification / labeling CSV outputs.
+
+Includes:
+- CSV reading with delimiter sniffing.
+- Confusion-matrix utilities and macro/micro P/R/F1.
+- Simple data-quality checks for ID uniqueness and label coverage.
+"""
 import os
 import sys
 import json
