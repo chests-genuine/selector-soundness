@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""Generate selector soundness reports from CSV inputs.
+
+Importing this module has no side effects; all behavior is opt-in via functions/CLI.
+"""
+from __future__ import annotations
+
+__version__: str = "0.1.0"
+__author__: str = "Contributors"
 from __future__ import annotations
 
 import argparse
