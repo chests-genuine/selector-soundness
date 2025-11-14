@@ -344,9 +344,11 @@ def main() -> None:
         if csv_file is not None:
             csv_file.close()
 
-    elapsed = time.monotonic() - t0
+     elapsed = time.monotonic() - t0
     if not args.quiet:
-        print(f"\n⏱️  Elapsed: {elapsed:.2f}s", file=sys.stderr)
+        blocks_scanned = len(records)
+        speed = blocks_scanned / elapsed if elapsed > 0 else 0.0
+        print(f"\n⏱️  Elapsed: {elapsed:.2f}s for {blocks_scanned} blocks ({speed:.2f} blocks/s)", file=sys.stderr)
 
     if args.json:
         out = {
