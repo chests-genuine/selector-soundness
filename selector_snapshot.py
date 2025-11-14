@@ -226,10 +226,19 @@ def main() -> None:
             file=sys.stderr,
         )
 
-        if missing_in_bytecode:
-            print(f"   ⚠️  ABI selectors missing in bytecode (first 10): {missing_in_bytecode[:10]}", file=sys.stderr)
+               if missing_in_bytecode:
+            print(
+                f"   ⚠️  ABI selectors missing in bytecode (first {MISMATCH_PREVIEW}): "
+                f"{missing_in_bytecode[:MISMATCH_PREVIEW]}",
+                file=sys.stderr,
+            )
         if extra_in_bytecode:
-            print(f"   ⚠️  Selectors in bytecode but not ABI (first 10): {extra_in_bytecode[:10]}", file=sys.stderr)
+            print(
+                f"   ⚠️  Selectors in bytecode but not ABI (first {MISMATCH_PREVIEW}): "
+                f"{extra_in_bytecode[:MISMATCH_PREVIEW]}",
+                file=sys.stderr,
+            )
+
 
     if args.json:
         print(json.dumps(snapshot, indent=2, sort_keys=True))
