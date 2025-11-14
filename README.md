@@ -1,7 +1,15 @@
 # selector-soundness
 
-Overview
-A tiny CLI to assess smart contract soundness by comparing function selectors defined in an ABI with selectors heuristically detected in the deployed runtime bytecode. This helps catch ABI drift, stealthy upgrades, or misconfigurations in L1 contracts frequently used by zk ecosystems like Aztec and FHE/zk integrations like Zama. It also supports an optional allowed-list policy to flag unexpected selectors in production deployments.
+## Overview
+
+A tiny CLI to assess smart contract soundness by comparing function selectors
+defined in an ABI with selectors heuristically detected in the deployed runtime
+bytecode.
+
+This helps catch ABI drift, stealthy upgrades, or misconfigurations in L1
+contracts frequently used by zk ecosystems like Aztec and FHE/zk integrations
+like Zama. It also supports an optional allowed-list policy to flag unexpected
+selectors in production deployments.
 
 How it works
 1) Loads the ABI and computes canonical function selectors (keccak of name(types), first 4 bytes).
