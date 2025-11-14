@@ -233,7 +233,10 @@ def main() -> None:
     if not abi_sels:
         print("⚠️ ABI has no function entries; nothing to compare.", file=sys.stderr)
 
-    w3 = connect(args.rpc)
+      w3 = connect(args.rpc)
+    # override timeout if provided
+    w3 = Web3(Web3.HTTPProvider(args.rpc, request_kwargs={"timeout": args.timeout}))
+
     chain_id = w3.eth.chain_id
     tip = w3.eth.block_number
     print(f"🌐 Connected to chainId {chain_id}, tip {tip}", file=sys.stderr)
