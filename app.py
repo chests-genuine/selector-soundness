@@ -98,9 +98,14 @@ def main() -> None:
         sys.exit(1)
 
     try:
+        try:
         abi = load_json(args.abi)
         if not isinstance(abi, list):
-            raise ValueError("ABI must be a JSON array.")
+            # Common case: artifact with {"abi": [...]}
+            if isinstance(abi, dict) and isinstance(abi.get("abi"), list):
+                abi = abi["abi"]
+            else:
+                raise ValueError("ABI must be a JSON array or an artifact with an 'abi' array.")
     except Exception as e:
         print(f"❌ Failed to load ABI: {e}")
         sys.exit(1)
