@@ -121,7 +121,7 @@ def selector_commitment(selectors: Set[str]) -> str:
 
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
-        description="Snapshot a contract's selector surface at a single block.",
+        description=" a contract's selector surface at a single block.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     ap.add_argument("-r", "--rpc", default=DEFAULT_RPC, help="RPC URL (default from RPC_URL)")
@@ -190,6 +190,7 @@ def main() -> None:
 
     snapshot = {
         "rpc": args.rpc,
+        "abiFunctionCount": len(abi_map),
         "chainId": int(chain_id),
         "address": addr,
         "blockNumber": int(block_id),
