@@ -3,10 +3,10 @@ import os
 import sys
 import json
 import argparse
-from typing import List, Set, Dict, Any, Tuple
+from typing import List, Set, Dict, Any
 from web3 import Web3
-from eth_abi.abi import abi_to_signature
-from eth_utils import keccak, to_bytes
+from eth_utils import keccak
+
 
 DEFAULT_RPC = os.environ.get("RPC_URL", "https://mainnet.infura.io/v3/YOUR_INFURA_KEY")
 
