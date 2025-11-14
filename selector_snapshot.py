@@ -176,6 +176,7 @@ def main() -> None:
     else:
         blk = w3.eth.get_block(block_id)
         block_id = int(blk.number)
+    resolved_block = int(block_id)
 
     code = w3.eth.get_code(addr, block_identifier=block_id)
     byte_selectors = parse_push4_selectors(code)
@@ -208,11 +209,13 @@ def main() -> None:
 
     if not args.quiet:
         print(f"🌐 chainId={chain_id}  addr={addr}", file=sys.stderr)
-        print(
+             print(
             f"📦 block={snapshot['blockNumber']}  ts={snapshot['timestampUtc']}  "
             f"byteLen={snapshot['bytecodeLength']}",
             file=sys.stderr,
+        
         )
+         # snapshot['blockNumber'] == resolved_block
         print(
             f"🔑 ABI selectors={snapshot['abiSelectorCount']}  "
             f"byte selectors={snapshot['byteSelectorCount']}",
