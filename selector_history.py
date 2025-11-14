@@ -1,3 +1,10 @@
+"""Scan a contract's function selector surface over a block range.
+
+For a given address + ABI, this script:
+- Extracts ABI-based selectors.
+- Scans runtime bytecode for PUSH4-based selectors over blocks [start, end].
+- Detects changes vs the previous sampled block and mismatches vs the ABI.
+"""
 from __future__ import annotations
 
 import os
