@@ -120,10 +120,15 @@ def selector_commitment(selectors: Set[str]) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    ap = argparse.ArgumentParser(
-        description="Snapshot a contract's selector surface at a single block.",
+    p = argparse.ArgumentParser(
+        description=(
+            "selector-soundness — compare ABI function selectors to selectors "
+            "detected in runtime bytecode (useful for Aztec/Zama L1 contracts "
+            "and general Web3 soundness checks)."
+        ),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
+
     ap.add_argument("-r", "--rpc", default=DEFAULT_RPC, help="RPC URL (default from RPC_URL)")
     ap.add_argument("-a", "--address", required=True, help="Contract address (0x...)")
     ap.add_argument("--abi", required=True, help="Path to ABI JSON file")
