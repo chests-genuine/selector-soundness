@@ -147,6 +147,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Suppress human-readable logs on stderr",
     )
+        ap.add_argument(
+        "--chain-id",
+        type=int,
+        help="Override chain ID reported by RPC",
+    )
+
     return ap.parse_args()
 
 
@@ -168,6 +174,11 @@ def main() -> None:
 
     w3 = connect(args.rpc, timeout=args.timeout)
     chain_id = w3.eth.chain_id
+    if args.chain_id is not None:
+        print(f"ℹ️  Overriding chainId {chain_id} with {args.chain_id}", file=sys.stderr)
+        chain_id = args.chain_id
+    block_id = as_block_id(args.block)
+
     block_id = as_block_id(args.block)
 
     # Resolve block number
