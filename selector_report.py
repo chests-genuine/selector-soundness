@@ -62,7 +62,11 @@ def _read_rows(
     return ids, y_true, y_pred, selectors
 
 
-def _confusion(
+ def _confusion(
+    y_true: Iterable[str], y_pred: Iterable[str]
+) -> Tuple[List[str], Dict[Tuple[str, str], int]]:
+    """Build a confusion matrix as a dict keyed by (truth, pred) pairs."""
+
     y_true: Iterable[str], y_pred: Iterable[str]
 ) -> Tuple[List[str], Dict[Tuple[str, str], int]]:
     labels = sorted(set(y_true) | set(y_pred))
