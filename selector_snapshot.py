@@ -131,11 +131,11 @@ def parse_args() -> argparse.Namespace:
         "--block",
         help="Block number or tag (latest|finalized|safe|earliest|pending, default: latest)",
     )
-    ap.add_argument(
+      ap.add_argument(
         "--timeout",
         type=float,
         default=RPC_TIMEOUT,
-        help="RPC HTTP timeout in seconds",
+        help="RPC HTTP timeout in seconds (default from RPC_TIMEOUT env)",
     )
     ap.add_argument(
         "--json",
