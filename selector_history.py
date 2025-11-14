@@ -176,10 +176,15 @@ def parse_args() -> argparse.Namespace:
         "--csv",
         help="Optional CSV output path (one row per sampled block)",
     )
-    p.add_argument(
+     p.add_argument(
         "--quiet",
         action="store_true",
         help="Suppress human-readable logs on stderr",
+    )
+    p.add_argument(
+        "--strict",
+        action="store_true",
+        help="Exit with code 2 if any selector changes are observed",
     )
     return p.parse_args()
 
