@@ -158,9 +158,13 @@ def main() -> None:
 
     addr = checksum(args.address)
     abi_json = load_json(args.abi)
-    if not isinstance(abi_json, list):
-        print("❌ ABI JSON must be an array of entries.", file=sys.stderr)
-        sys.exit(2)
+      if not isinstance(abi_json, list):
+        # Common case: Truffle/Hardhat artifact with {"abi": [...]} wrapper.
+        if isinstance(abi_json, dict) and isinstance(abi_json.get("abi"), list):
+            abi_json = abi_json["abi"]
+        else:
+            print("❌ ABI JSON must be an array of entries or an artifact with an 'abi' array.", file=sys.stderr)
+            sys.exit(2)
 
     abi_map = abi_selectors(abi_json)
     if not abi_map:
