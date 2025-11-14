@@ -142,11 +142,17 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Emit JSON snapshot to stdout (in addition to logs)",
     )
-    ap.add_argument(
+      ap.add_argument(
         "--quiet",
         action="store_true",
         help="Suppress human-readable logs on stderr",
     )
+    ap.add_argument(
+        "--strict",
+        action="store_true",
+        help="Exit with code 2 if there are any missing or extra selectors",
+    )
+
     return ap.parse_args()
 
 
@@ -233,6 +239,9 @@ def main() -> None:
 
     if args.json:
         print(json.dumps(snapshot, indent=2, sort_keys=True))
+            if args.strict and (missing_in_bytecode or extra_in_bytecode):
+        sys.exit(2)
+
 
 
 if __name__ == "__main__":
