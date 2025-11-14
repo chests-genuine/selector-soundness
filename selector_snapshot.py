@@ -127,10 +127,11 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("-r", "--rpc", default=DEFAULT_RPC, help="RPC URL (default from RPC_URL)")
     ap.add_argument("-a", "--address", required=True, help="Contract address (0x...)")
     ap.add_argument("--abi", required=True, help="Path to ABI JSON file")
-    ap.add_argument(
+     ap.add_argument(
         "--block",
         help="Block number or tag (latest|finalized|safe|earliest|pending, default: latest)",
     )
+
     ap.add_argument(
         "--timeout",
         type=float,
