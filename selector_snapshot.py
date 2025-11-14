@@ -65,7 +65,7 @@ def as_block_id(s: str | None) -> str | int:
 # --- selector logic --------------------------------------------------------
 
 
-def abi_selectors(abi_json: List[Dict[str, Any]]) -> Dict[str, str]:
+def abi_selectors(abi_json: List[Dict[str, Any]]) -> SignatureMap:
     """
     Return mapping: signature_str -> 4-byte hex selector (no 0x).
     Only includes entries with type == 'function'.
@@ -85,7 +85,7 @@ def abi_selectors(abi_json: List[Dict[str, Any]]) -> Dict[str, str]:
     return sig_to_sel
 
 
-def parse_push4_selectors(bytecode: bytes) -> Set[str]:
+def parse_push4_selectors(bytecode: bytes) -> SelectorSet:
     """
     Heuristically extract 4-byte selectors from runtime bytecode.
 
@@ -109,7 +109,7 @@ def parse_push4_selectors(bytecode: bytes) -> Set[str]:
     return selectors
 
 
-def selector_commitment(selectors: Set[str]) -> str:
+def selector_commitment(selectors: SelectorSet) -> str:
     """Compute keccak over lexicographically sorted selectors (as bytes)."""
     ordered = sorted(selectors)
     buf = b"".join(bytes.fromhex(s) for s in ordered)
