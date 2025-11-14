@@ -30,7 +30,7 @@ __all__.extend(["read_csv_dicts", "DEFAULT_ENCODING"])
 
 
 def _read_rows(
-    path: pathlib.Path,
+    path: Path,
     *,
     id_col: str,
     truth_col: str,
