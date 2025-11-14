@@ -10,6 +10,7 @@ import statistics
 from typing import Iterable, List, Tuple, Dict, Any
 import csv
 from pathlib import Path
+__all__: list[str] = []
 
 DEFAULT_ENCODING: str = "utf-8"
 
