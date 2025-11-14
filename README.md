@@ -12,6 +12,13 @@ How it works
    - extra selectors (in bytecode but not in ABI)
 5) Optionally checks that all bytecode selectors are included in a provided allowed-list.
 
+
+## Requirements
+
+- Python **3.9+**
+- An EVM JSON-RPC endpoint (e.g. Ethereum mainnet, an L2, or a local devnet)
+- Network access from the machine running the CLI to that RPC
+
 Installation
 1) Install Python 3.9+.
 2) Install dependencies:
