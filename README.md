@@ -49,6 +49,19 @@ You’ll see:
 - Allowed-policy result when provided
 Exit code is 0 if no inconsistencies are found, otherwise 2 (useful for CI pipelines).
 
+## Quickstart
+
+```bash
+pip install web3 eth-abi eth-utils
+
+export RPC_URL="https://your-node.example"
+
+python app.py \
+  --address 0xYourContract \
+  --abi ./YourContract.abi.json \
+  --block latest
+  '''
+
 Notes
 - Selector extraction via PUSH4 is heuristic but effective for standard Solidity dispatch. Optimized or Yul-heavy contracts may require deeper analysis.
 - For proxy setups, run this tool against the implementation contract address.
