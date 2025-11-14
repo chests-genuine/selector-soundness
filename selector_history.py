@@ -150,6 +150,7 @@ def parse_args() -> argparse.Namespace:
         description="Scan selector surface over a block range and report changes.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
+    
     p.add_argument("--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
     p.add_argument("--address", required=True, help="Contract address to analyze")
     p.add_argument("--abi", required=True, help="Path to ABI JSON file")
@@ -167,15 +168,18 @@ def parse_args() -> argparse.Namespace:
         default=RPC_TIMEOUT,
         help="HTTP timeout seconds",
     )
-    p.add_argument(
+     p.add_argument(
         "--json",
         action="store_true",
         help="Emit JSON array of per-block records to stdout",
     )
-    p.add_argument(
-        "--csv",
-        help="Optional CSV output path (one row per sampled block)",
+
+       p.add_argument(
+        "--only-changes",
+        action="store_true",
+        help="Only print log lines for blocks where the selector set changed",
     )
+
     p.add_argument(
         "--quiet",
         action="store_true",
@@ -299,8 +303,10 @@ def main() -> None:
                     if preview_lost:
                         suff = " …" if len(lost) > MAX_PREVIEW else ""
                         print(f"     - {preview_lost}{suff}", file=sys.stderr)
-                else:
-                    print(base_line, file=sys.stderr)
+                                  else:
+                    if not args.only_changes:
+                        print(base_line, file=sys.stderr)
+
 
             # Record structured data
             rec = {
