@@ -10,6 +10,7 @@ from typing import Dict, List, Set, Tuple, Any, Optional
 from web3 import Web3
 from eth_utils import keccak
 
+__version__ = "0.1.0"
 DEFAULT_RPC = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/YOUR_INFURA_KEY")
 RPC_TIMEOUT = int(os.getenv("RPC_TIMEOUT", "30"))
 
@@ -181,12 +182,20 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Suppress human-readable logs on stderr",
     )
+        p.add_argument(
+        "--version",
+        action="store_true",
+        help="Print version and exit",
+    )
     return p.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-
+   if args.version:
+        print(f"selector_history version {__version__}")
+        return
+       
     if args.start < 0 or args.end < 0:
         print("❌ --start and --end must be >= 0", file=sys.stderr)
         sys.exit(2)
