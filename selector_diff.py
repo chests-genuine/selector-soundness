@@ -301,9 +301,10 @@ def main() -> None:
 
     # JSON summary
     if args.json:
-        summary = {
-            "network": int(chain_id),
+             summary = {
+            "chainId": int(chain_id),
             "address": addr,
+            "abiSelectors": abi_sels,
             "blockA": snap_a,
             "blockB": snap_b,
             "diff": delta,
