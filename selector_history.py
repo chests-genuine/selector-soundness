@@ -18,6 +18,13 @@ MAX_PREVIEW = 20  # max selectors to preview in logs
 
 # --- basic helpers ---------------------------------------------------------
 
+        for blk in range(start, end + 1, args.step):
+            if args.max_blocks and scanned >= args.max_blocks:
+                if not args.quiet:
+                    print(f"ℹ️  max-blocks reached ({args.max_blocks}); stopping.", file=sys.stderr)
+                break
+            scanned += 1
+            info = scan_block(...)
 
 def checksum(addr: str) -> str:
     if not isinstance(addr, str) or not Web3.is_address(addr):
@@ -176,14 +183,21 @@ def parse_args() -> argparse.Namespace:
         "--csv",
         help="Optional CSV output path (one row per sampled block)",
     )
-    p.add_argument(
+       p.add_argument(
         "--quiet",
         action="store_true",
         help="Suppress human-readable logs on stderr",
     )
+    p.add_argument(
+        "--max-blocks",
+        type=int,
+        default=0,
+        help="Optional cap on number of blocks to scan (0 = no cap)",
+    )
+
     return p.parse_args()
 
-
+   scanned = 0
 def main() -> None:
     args = parse_args()
 
