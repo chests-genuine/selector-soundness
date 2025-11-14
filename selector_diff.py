@@ -302,7 +302,7 @@ def main() -> None:
     # JSON summary
     if args.json:
         summary = {
-            "network": int(chain_id),
+            "chainId": int(chain_id),
             "address": addr,
             "blockA": snap_a,
             "blockB": snap_b,
