@@ -162,9 +162,18 @@ def main() -> None:
         print("❌ ABI JSON must be an array of entries.", file=sys.stderr)
         sys.exit(2)
 
-    abi_map = abi_selectors(abi_json)
+       abi_map = abi_selectors(abi_json)
     if not abi_map:
         print("⚠️ ABI has no function entries; ABI comparison will be trivial.", file=sys.stderr)
+
+    # Detect selector collisions within the ABI
+    sel_to_sigs: Dict[str, List[str]] = {}
+    for sig, sel in abi_map.items():
+        sel_to_sigs.setdefault(sel, []).append(sig)
+    collisions = {sel: sigs for sel, sigs in sel_to_sigs.items() if len(sigs) > 1}
+    if collisions:
+        print(f"⚠️ ABI has selector collisions (same 4-byte id for multiple signatures): {collisions}", file=sys.stderr)
+
 
     w3 = connect(args.rpc, timeout=args.timeout)
     chain_id = w3.eth.chain_id
