@@ -21,7 +21,7 @@ MAX_PREVIEW = 20  # max selectors to preview in logs
 
 def checksum(addr: str) -> str:
     if not isinstance(addr, str) or not Web3.is_address(addr):
-        print("❌ Invalid Ethereum address.", file=sys.stderr)
+        print(f"❌ Invalid Ethereum address: {addr!r}", file=sys.stderr)
         sys.exit(2)
     return Web3.to_checksum_address(addr)
 
