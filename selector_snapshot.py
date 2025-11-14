@@ -147,6 +147,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Suppress human-readable logs on stderr",
     )
+      ap.add_argument(
+        "--version",
+        action="store_true",
+        help="Print version and exit",
+    )
     return ap.parse_args()
 
 
