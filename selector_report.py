@@ -39,7 +39,8 @@ def _read_rows(
 ) -> Tuple[List[str], List[str], List[str], List[str] | None]:
     ids, y_true, y_pred, selectors = [], [], [], ([] if selector_col else None)
 
-    with path.open("r", encoding="utf-8", newline="") as f:
+      with path.open("r", encoding=DEFAULT_ENCODING, newline="") as f:
+
         reader = csv.DictReader(f)
         required = {id_col, truth_col, pred_col} | ({selector_col} if selector_col else set())
         missing = [c for c in required if c and c not in reader.fieldnames]
