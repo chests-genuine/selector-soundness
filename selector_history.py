@@ -12,7 +12,7 @@ from eth_utils import keccak
 
 DEFAULT_RPC = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/YOUR_INFURA_KEY")
 RPC_TIMEOUT = int(os.getenv("RPC_TIMEOUT", "30"))
-
+DEFAULT_STEP = int(os.getenv("SELECTOR_HISTORY_STEP", "100"))
 MAX_PREVIEW = 20  # max selectors to preview in logs
 
 
@@ -155,12 +155,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--abi", required=True, help="Path to ABI JSON file")
     p.add_argument("--start", type=int, required=True, help="Start block (inclusive)")
     p.add_argument("--end", type=int, required=True, help="End block (inclusive)")
-    p.add_argument(
+      p.add_argument(
         "--step",
         type=int,
-        default=100,
-        help="Step size between sampled blocks (e.g. 1 = every block)",
-    )
+        default=DEFAULT_STEP,
+
     p.add_argument(
         "--timeout",
         type=int,
