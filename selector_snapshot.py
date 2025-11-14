@@ -1,3 +1,6 @@
+'''
+- Supports block numbers or tags like latest/finalized/safe/earliest/pending.
+'''
 from __future__ import annotations
 
 import os
