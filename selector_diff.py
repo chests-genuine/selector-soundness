@@ -189,6 +189,9 @@ def diff_blocks(
 
 
 # --- CLI ------------------------------------------------------------------
+# Example:
+#   python selector_diff.py 0xYourContract your_abi.json \
+#       --block-a 18000000 --block-b 19000000 --json --strict
 
 def parse_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser(
