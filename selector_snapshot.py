@@ -177,7 +177,9 @@ def main() -> None:
         blk = w3.eth.get_block(block_id)
         block_id = int(blk.number)
 
-    code = w3.eth.get_code(addr, block_identifier=block_id)
+     code = w3.eth.get_code(addr, block_identifier=block_id)
+    if not code:
+        print("⚠️ Target has no contract code at this block — likely an EOA or pre-deploy.", file=sys.stderr)
     byte_selectors = parse_push4_selectors(code)
     abi_selectors_set = set(abi_map.values())
 
