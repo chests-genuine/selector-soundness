@@ -123,6 +123,9 @@ def resolve_block_number(w3: Web3, tag_or_num: Any) -> int:
 
 
 def fmt_utc(ts: int) -> str:
+    """Format a UNIX timestamp (seconds) as a UTC timestamp string."""
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(ts))
+
     return time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(ts))
 
 
