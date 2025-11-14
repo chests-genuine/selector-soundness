@@ -3,14 +3,19 @@
 Overview
 A tiny CLI to assess smart contract soundness by comparing function selectors defined in an ABI with selectors heuristically detected in the deployed runtime bytecode. This helps catch ABI drift, stealthy upgrades, or misconfigurations in L1 contracts frequently used by zk ecosystems like Aztec and FHE/zk integrations like Zama. It also supports an optional allowed-list policy to flag unexpected selectors in production deployments.
 
-How it works
-1) Loads the ABI and computes canonical function selectors (keccak of name(types), first 4 bytes).
-2) Downloads the contract’s runtime bytecode at a chosen block.
-3) Scans the bytecode for PUSH4 opcodes to collect candidate selectors (a common Solidity dispatch pattern).
-4) Compares ABI selectors vs bytecode selectors to find:
-   - missing selectors (in ABI but not seen in bytecode)
-   - extra selectors (in bytecode but not in ABI)
-5) Optionally checks that all bytecode selectors are included in a provided allowed-list.
+## How it works
+
+1. Loads the ABI and computes canonical function selectors
+   (`keccak256("name(types)")`, first 4 bytes).
+2. Downloads the contract’s runtime bytecode at a chosen block.
+3. Scans the bytecode for `PUSH4` opcodes to collect candidate selectors
+   (a common Solidity dispatch pattern).
+4. Compares ABI selectors vs bytecode selectors to find:
+   - **missing** selectors (in ABI but not seen in bytecode)
+   - **extra** selectors (in bytecode but not in ABI)
+5. Optionally checks that all bytecode selectors are included in a provided
+   **allowed-list**.
+
 
 Installation
 1) Install Python 3.9+.
