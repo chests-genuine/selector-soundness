@@ -248,8 +248,8 @@ def main() -> None:
     delta = diff_blocks(snap_a, snap_b)
     elapsed = time.monotonic() - t0
 
-    # Human-readable summary
-    print("\n📦 ABI")
+       # Human-readable summary
+    print("\n📦 ABI", file=sys.stderr)
     print(f"  Functions: {len(abi_sels)}", file=sys.stderr)
 
     print("\n🔢 Snapshot A")
