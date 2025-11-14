@@ -195,6 +195,11 @@ def parse_args() -> argparse.Namespace:
         description="Diff a contract's function selectors between two blocks.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
+        ap.add_argument(
+        "--chain-id",
+        type=int,
+        help="Override chain ID reported by RPC",
+    )
     ap.add_argument("address", help="Contract address (0x...)")
     ap.add_argument("abi", help="Path to ABI JSON file")
     ap.add_argument(
@@ -234,7 +239,12 @@ def main() -> None:
         print("⚠️ ABI has no function entries; nothing to compare.", file=sys.stderr)
 
     w3 = connect(args.rpc)
-    chain_id = w3.eth.chain_id
+     chain_id = w3.eth.chain_id
+    if args.chain_id is not None:
+        print(f"ℹ️  Overriding chainId {chain_id} with {args.chain_id}", file=sys.stderr)
+        chain_id = args.chain_id
+    tip = w3.eth.block_number
+
     tip = w3.eth.block_number
     print(f"🌐 Connected to chainId {chain_id}, tip {tip}", file=sys.stderr)
     print(f"🔗 Address: {addr}", file=sys.stderr)
