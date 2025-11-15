@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+# Default CSV column names (used by CLI and helpers)
+DEFAULT_ID_COL = "id"
+DEFAULT_TRUTH_COL = "y_true"
+DEFAULT_PRED_COL = "y_pred"
+DEFAULT_SELECTOR_COL = "selector"
 
 import argparse
 import collections
