@@ -1,5 +1,13 @@
-#!/usr/bin/env python3
+# Exit codes
+EXIT_OK = 0
+EXIT_ERROR = 1
+EXIT_ISSUES = 2  # e.g., data-quality issues detected
+DEFAULT_ID_COL = "id"
+DEFAULT_TRUTH_COL = "y_true"
+DEFAULT_PRED_COL = "y_pred"
+DEFAULT_SELECTOR_COL = "selector"
 from __future__ import annotations
+
 
 import argparse
 import collections
