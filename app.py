@@ -8,6 +8,21 @@ import sys
 import json
 import time  # add this with your imports if not already there
 import argparse
+def _load_dotenv_if_available() -> None:
+    """Load a .env file if python-dotenv is installed; otherwise no-op."""
+    try:
+        from dotenv import load_dotenv  # type: ignore
+    except Exception:
+        return
+    try:
+        load_dotenv()
+        logger.debug("Loaded .env")
+    except Exception as exc:  # pragma: no cover
+        logger.debug("Failed to load .env: %r", exc, exc_info=True)
+
+# Call once at import time; harmless if no .env or no package installed.
+_load_dotenv_if_available()
+
 from typing import List, Set, Dict, Any, Tuple
 from web3 import Web3
 from eth_abi.abi import abi_to_signature
