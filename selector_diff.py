@@ -1,3 +1,10 @@
+"""Diff a contract's function selectors between two blocks.
+
+- Computes canonical ABI-based selectors.
+- Scans runtime bytecode for PUSH4-derived selectors.
+- Compares selector surface at two block heights and emits a JSON / human summary.
+"""
+
 import os
 import sys
 import json
