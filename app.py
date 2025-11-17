@@ -109,7 +109,17 @@ def main() -> None:
     if not w3.is_connected():
         print("❌ RPC connection failed. Check --rpc or RPC_URL.")
         sys.exit(1)
+def network_name(chain_id: int) -> str:
+    networks = {
+        1: "Ethereum Mainnet",
+        11155111: "Sepolia Testnet",
+        137: "Polygon",
+        10: "Optimism",
+        42161: "Arbitrum One",
+    }
+    return networks.get(chain_id, f"Unknown (chain ID {chain_id})")
 
+print(f"🌐 Connected to {network_name(w3.eth.chain_id)} (chainId {w3.eth.chain_id})")
     try:
         abi = load_json(args.abi)
         if not isinstance(abi, list):
