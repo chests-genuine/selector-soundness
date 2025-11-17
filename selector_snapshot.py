@@ -155,11 +155,17 @@ def parse_args() -> argparse.Namespace:
         default=RPC_TIMEOUT,
         help="RPC HTTP timeout in seconds",
     )
-    ap.add_argument(
+      ap.add_argument(
         "--json",
         action="store_true",
         help="Emit JSON snapshot to stdout (in addition to logs)",
     )
+       ap.add_argument(
+        "--raw-json",
+        action="store_true",
+        help="Emit compact JSON (no pretty-printing)",
+    )
+
     ap.add_argument(
         "--quiet",
         action="store_true",
@@ -270,9 +276,12 @@ def main() -> None:
             print(f"   ⚠️  ABI selectors missing in bytecode (first 10): {missing_in_bytecode[:10]}", file=sys.stderr)
         if extra_in_bytecode:
             print(f"   ⚠️  Selectors in bytecode but not ABI (first 10): {extra_in_bytecode[:10]}", file=sys.stderr)
-
     if args.json:
-        print(json.dumps(snapshot, indent=2, sort_keys=True))
+        if args.raw_json:
+            print(json.dumps(snapshot, separators=(",", ":"), sort_keys=True))
+        else:
+            print(json.dumps(snapshot, indent=2, sort_keys=True))
+
 
 
 if __name__ == "__main__":
