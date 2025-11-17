@@ -120,10 +120,10 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="selector-soundness — compare ABI function selectors to selectors detected in runtime bytecode (useful for Aztec/Zama L1 contracts and general Web3 soundness checks)."
     )
-    p.add_argument("--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
-    p.add_argument("--address", required=True, help="Contract address to analyze")
-    p.add_argument("--abi", required=True, help="Path to ABI JSON file")
-    p.add_argument("--allowed", help="Optional JSON of allowed selectors (array or object)")
+    p.add_argument("-r", "--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
+    p.add_argument("-a", "--address", required=True, help="Contract address to analyze")
+    p.add_argument("-b", "--abi", required=True, help="Path to ABI JSON file")
+    p.add_argument("-l", "--allowed", help="Optional JSON of allowed selectors (array or object)")
     p.add_argument("--block", default="finalized", help="Block tag or number (default: finalized)")
     p.add_argument("--timeout", type=int, default=30, help="HTTP timeout seconds (default: 30)")
     p.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
