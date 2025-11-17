@@ -134,6 +134,9 @@ def main() -> None:
 
     missing_in_bytecode = sorted(abi_selectors - bytecode_selectors)
     extra_in_bytecode = sorted(bytecode_selectors - abi_selectors)
+    print(f"🔹 ABI selectors found: {len(abi_selectors)}")
+print(f"🔸 Bytecode selectors found: {len(bytecode_selectors)}")
+
 
     allowed_set: Set[str] = set()
     allowed_violations: Set[str] = set()
