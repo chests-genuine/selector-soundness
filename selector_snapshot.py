@@ -21,6 +21,7 @@ from eth_utils import keccak
 
 DEFAULT_RPC = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 RPC_TIMEOUT = float(os.getenv("RPC_TIMEOUT", "30"))
+__version__ = "0.1.0"
 
 
 # --- helpers ---------------------------------------------------------------
