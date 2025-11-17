@@ -1,3 +1,12 @@
+    """
+    Heuristically extract 4-byte selectors from runtime bytecode.
+
+    Scan for PUSH4 (0x63) opcodes followed by 4 bytes, which matches
+    the common Solidity dispatcher pattern:
+        PUSH4 <selector> ; EQ ; ...
+
+    This may miss selectors in non-standard dispatch logic (Yul, custom proxies).
+    """
 from __future__ import annotations
 
 import os
