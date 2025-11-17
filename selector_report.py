@@ -121,6 +121,10 @@ def _safe_div(n: float, d: float) -> float:
 def _prf_for_label(
     label: str, labels: List[str], cm: Dict[Tuple[str, str], int]
 ) -> Tuple[float, float, float]:
+    """Compute (precision, recall, F1) for a single label given a confusion matrix."""
+
+    label: str, labels: List[str], cm: Dict[Tuple[str, str], int]
+) -> Tuple[float, float, float]:
     tp = cm.get((label, label), 0)
     fp = sum(cm.get((l, label), 0) for l in labels if l != label)
     fn = sum(cm.get((label, l), 0) for l in labels if l != label)
