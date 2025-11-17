@@ -12,6 +12,24 @@ from typing import List, Set, Dict, Any, Tuple
 from web3 import Web3
 from eth_abi.abi import abi_to_signature
 from eth_utils import keccak, to_bytes
+from os import fspath
+
+def ensure_str(obj: object) -> str:
+    """Return a readable string for PathLike, bytes, or other objects."""
+    try:
+        s = fspath(obj)  # type: ignore[arg-type]
+        if isinstance(s, str):
+            return s
+    except Exception:
+        pass
+    if isinstance(obj, bytes):
+        try:
+            return obj.decode("utf-8", "replace")
+        except Exception:
+            return repr(obj)
+    return str(obj)
+
+__all__.append("ensure_str")
 
 DEFAULT_RPC = os.environ.get("RPC_URL", "https://mainnet.infura.io/v3/YOUR_INFURA_KEY")
 
