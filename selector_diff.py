@@ -6,8 +6,7 @@ import argparse
 from typing import Dict, List, Set, Tuple, Any, Optional
 
 from web3 import Web3
-from eth_abi import abi
-from eth_utils import keccak, to_bytes
+from eth_utils import keccak
 
 DEFAULT_RPC = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 MAX_PREVIEW = 20
