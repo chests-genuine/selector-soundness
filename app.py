@@ -27,6 +27,13 @@ from typing import List, Set, Dict, Any, Tuple
 from web3 import Web3
 from eth_abi.abi import abi_to_signature
 from eth_utils import keccak, to_bytes
+from pathlib import Path
+
+def _read_text(path: str | Path, *, encoding: str = "utf-8") -> str:
+    """Read text from a path-like; wrapper for future enhancements."""
+    return Path(path).read_text(encoding=encoding)
+
+__all__.append("_read_text")
 
 DEFAULT_RPC = os.environ.get("RPC_URL", "https://mainnet.infura.io/v3/YOUR_INFURA_KEY")
 
