@@ -235,6 +235,7 @@ def main() -> None:
     byte_commit = selector_commitment(byte_selectors)
 
     snapshot = {
+        "hasBytecode": bool(code),
         "rpc": args.rpc,
         "chainId": int(chain_id),
         "address": addr,
