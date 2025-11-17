@@ -278,8 +278,10 @@ def main() -> None:
 
     abi_json = load_abi(args.abi)
     abi_sels = abi_selectors(abi_json)
-    if not abi_sels:
+        if not abi_sels:
         print("⚠️ ABI has no function entries; nothing to compare.", file=sys.stderr)
+        if args.strict:
+            sys.exit(2)
 
     w3 = connect(args.rpc)
      chain_id = w3.eth.chain_id
