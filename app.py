@@ -8,6 +8,21 @@ import sys
 import json
 import time  # add this with your imports if not already there
 import argparse
+from contextlib import contextmanager
+from time import perf_counter
+
+@contextmanager
+def time_block(name: str):
+    """Measure elapsed time for a code block and log it at DEBUG."""
+    start = perf_counter()
+    try:
+        yield
+    finally:
+        elapsed_ms = (perf_counter() - start) * 1000.0
+        logger.debug("%s took %.2f ms", name, elapsed_ms)
+
+__all__.append("time_block")
+
 from typing import List, Set, Dict, Any, Tuple
 from web3 import Web3
 from eth_abi.abi import abi_to_signature
