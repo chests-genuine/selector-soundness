@@ -164,6 +164,12 @@ def diff_selector_sets(prev: Set[str], curr: Set[str]) -> Tuple[List[str], List[
 
 # --- CLI -------------------------------------------------------------------
 
+# Example usage:
+#   python selector_history.py \
+#       --address 0xYourContract \
+#       --abi ./YourContract.abi.json \
+#       --start 18000000 --end 18100000 \
+#       --step 100 --json --csv history.csv
 
 def parse_args() -> argparse.Namespace:
      p = argparse.ArgumentParser(
