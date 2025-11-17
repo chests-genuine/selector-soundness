@@ -1,4 +1,12 @@
-# app.py
+"""Application entrypoint and lightweight utilities.
+
+Importing this module has no side effects; all behavior is opt-in.
+"""
+from __future__ import annotations
+
+__version__: str = "0.1.0"
+__author__: str = "Contributors"
+
 import os
 import sys
 import json
