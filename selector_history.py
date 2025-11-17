@@ -172,14 +172,15 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Emit JSON array of per-block records to stdout",
     )
-    p.add_argument(
+        p.add_argument(
         "--csv",
         help="Optional CSV output path (one row per sampled block)",
     )
-    p.add_argument(
-        "--quiet",
+
+     p.add_argument(
+        "--csv-no-header",
         action="store_true",
-        help="Suppress human-readable logs on stderr",
+        help="Do not write CSV header (even if file is empty/new)",
     )
     return p.parse_args()
 
@@ -255,7 +256,7 @@ def main() -> None:
             "lostCount",
         ]
         csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-        if not file_exists:
+               if not file_exists and not args.csv_no_header:
             csv_writer.writeheader()
 
     t0 = time.monotonic()
