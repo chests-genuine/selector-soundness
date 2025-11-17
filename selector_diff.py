@@ -50,7 +50,14 @@ def load_abi(path: str) -> List[Dict[str, Any]]:
         sys.exit(2)
     return data
 
-
+def _read_rows(
+    path: pathlib.Path,
+    *,
+    id_col: str,
+    truth_col: str,
+    pred_col: str,
+    selector_col: str | None,
+) -> Tuple[List[str], List[str], List[str], List[str] | None]:
 def abi_selectors(abi_json: List[Dict[str, Any]]) -> Dict[str, str]:
     """
     Return mapping: signature_str -> 4-byte hex selector (no 0x).
