@@ -231,6 +231,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Exit with code 2 if gained/lost selectors are detected",
     )
+    ap.add_argument(
+        "--timeout",
+        type=float,
+        default=RPC_TIMEOUT,
+        help="RPC HTTP timeout in seconds",
+    )
     return ap.parse_args()
 
 
