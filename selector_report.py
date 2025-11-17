@@ -14,7 +14,14 @@ EXIT_ISSUES = 2  # non-fatal data-quality issues detected
 Importing this module has no side effects; all behavior is opt-in via functions/CLI.
 """
 from __future__ import annotations
-
+DEFAULT_ID_COL = "id"
+DEFAULT_TRUTH_COL = "y_true"
+DEFAULT_PRED_COL = "y_pred"
+DEFAULT_SELECTOR_COL = "selector"
+# Conventional exit codes
+EXIT_OK = 0
+EXIT_ERROR = 1
+EXIT_ISSUES = 2   # data-quality issues found (non-fatal but flagged)
 import argparse
 import collections
 import csv
