@@ -133,6 +133,9 @@ def scan_block(
     """
     blk = w3.eth.get_block(block_number)
     code = w3.eth.get_code(address, block_identifier=block_number)
+    if not code:
+        # Probably pre-deployment or selfdestruct; still scan (will yield zero selectors)
+        pass
 
     abi_selectors = set(sig_map.values())
     byte_selectors = parse_push4_selectors(code)
