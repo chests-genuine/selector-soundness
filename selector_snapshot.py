@@ -15,6 +15,9 @@ import json
 import time
 import argparse
 from typing import Any, Dict, List, Set
+SelectorHex = str            # 8 hex chars, no 0x
+SelectorSet = Set[SelectorHex]
+SignatureMap = Dict[str, SelectorHex]  # "foo(uint256)" -> selector
 
 from web3 import Web3
 from eth_utils import keccak
