@@ -152,7 +152,11 @@ def parse_args() -> argparse.Namespace:
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     ap.add_argument("-r", "--rpc", default=DEFAULT_RPC, help="RPC URL (default from RPC_URL)")
-    ap.add_argument("-a", "--address", required=True, help="Contract address (0x...)")
+       ap.add_argument("-a", "--address", required=True, help="Contract address (0x...)")
+    ap.add_argument(
+        "--label",
+        help="Optional label/name for the contract (for logs only)",
+    )
     ap.add_argument("--abi", required=True, help="Path to ABI JSON file")
      ap.add_argument(
         "--block",
