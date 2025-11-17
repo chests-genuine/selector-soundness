@@ -54,6 +54,8 @@ def fmt_utc(ts: int) -> str:
     """Format a UNIX timestamp (seconds) as a UTC time string."""
     return time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(ts))
 
+def _is_block_tag(value: str) -> bool:
+    return value.lower() in ("latest", "finalized", "safe", "earliest", "pending")
 
 def as_block_id(s: str | None) -> str | int:
     """
@@ -63,7 +65,7 @@ def as_block_id(s: str | None) -> str | int:
     if s is None:
         return "latest"
     low = s.lower()
-    if low in ("latest", "finalized", "safe", "earliest", "pending"):
+    if _is_block_tag(low):
         return low
     try:
         return int(s, 0)
