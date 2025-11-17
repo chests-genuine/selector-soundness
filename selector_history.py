@@ -366,12 +366,14 @@ def main() -> None:
             "rpc": args.rpc,
             "chainId": int(chain_id),
             "address": addr,
+            "abiSelectors": sig_map,
             "startBlock": start,
             "endBlock": end,
             "step": args.step,
             "generatedAtUtc": fmt_utc(int(time.time())),
             "records": records,
         }
+
         print(json.dumps(out, indent=2, sort_keys=True))
 
 
