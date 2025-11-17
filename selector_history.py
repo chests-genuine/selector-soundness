@@ -290,14 +290,15 @@ def main() -> None:
 
             # Human logs
             if not args.quiet:
-                base_line = (
+                            base_line = (
                     f"📦 #{info['blockNumber']} "
                     f"ts={info['timestampUtc']} "
                     f"byteLen={info['bytecodeLength']} "
                     f"ABI={info['abiSelectorCount']} "
                     f"byte={info['byteSelectorCount']} "
                     f"missing={len(info['missingInBytecode'])} "
-                    f"extra={len(info['extraInBytecode'])}"
+                    f"extra={len(info['extraInBytecode'])} "
+                    f"commit={info.get('selectorCommitment', '0x')}"
                 )
                 if changed:
                     # show a preview of gains/losses
