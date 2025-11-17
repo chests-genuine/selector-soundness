@@ -10,6 +10,7 @@ from eth_abi import abi
 from eth_utils import keccak, to_bytes
 
 DEFAULT_RPC = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
+MAX_PREVIEW = 20
 
 # --- helpers ---------------------------------------------------------------
 
@@ -290,8 +291,10 @@ def main() -> None:
 
     print("\n🔍 Selector diff (bytecode-level)", file=sys.stderr)
     print(f"  Gained selectors:   {len(delta['gained'])}", file=sys.stderr)
-    if delta["gained"]:
-        print(f"    {delta['gained'][:20]}{' …' if len(delta['gained']) > 20 else ''}", file=sys.stderr)
+        if delta["gained"]:
+        preview = delta["gained"][:MAX_PREVIEW]
+        suffix = " …" if len(delta["gained"]) > MAX_PREVIEW else ""
+        print(f"    {preview}{suffix}", file=sys.stderr)
     print(f"  Lost selectors:     {len(delta['lost'])}", file=sys.stderr)
     if delta["lost"]:
         print(f"    {delta['lost'][:20]}{' …' if len(delta['lost']) > 20 else ''}", file=sys.stderr)
