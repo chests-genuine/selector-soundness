@@ -157,6 +157,11 @@ def _pct(part: int, whole: int) -> float:
     dup = [k for k, v in collections.Counter(ids).items() if v > 1]
     if dup:
         issues.append(f"• Duplicate IDs detected: {len(dup)} (examples: {dup[:5]})")
+    # Selector coverage (if provided)
+    if selectors is not None:
+        empty_sel = sum(1 for s in selectors if not s)
+        if empty_sel:
+            issues.append(f"• {empty_sel} rows have empty selector values.")
 
     # Class coverage
     missing_truth = sorted(set(y_pred) - set(y_true))
