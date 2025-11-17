@@ -361,6 +361,8 @@ def main() -> None:
                 "changedVsPrev": changed,
                 "gained": gained,
                 "lost": lost,
+                "hasMissing": len(info["missingInBytecode"]) > 0,
+                "hasExtra": len(info["extraInBytecode"]) > 0,
             }
             records.append(rec)
 
