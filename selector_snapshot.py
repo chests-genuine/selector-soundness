@@ -26,6 +26,16 @@ DEFAULT_RPC = os.getenv("RPC_URL", "https://mainnet.infura.io/v3/your_api_key")
 RPC_TIMEOUT = float(os.getenv("RPC_TIMEOUT", "30"))
 __version__ = "0.1.0"
 
+__all__ = [
+    "checksum",
+    "connect",
+    "load_json",
+    "fmt_utc",
+    "as_block_id",
+    "abi_selectors",
+    "parse_push4_selectors",
+    "selector_commitment",
+]
 
 # --- helpers ---------------------------------------------------------------
 
