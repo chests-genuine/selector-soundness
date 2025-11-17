@@ -397,6 +397,8 @@ def main() -> None:
             "startBlock": start,
             "endBlock": end,
             "step": args.step,
+                    # Use wall-clock time (UTC) for report generation timestamp
+        out = {
             "generatedAtUtc": fmt_utc(int(time.time())),
             "records": records,
         }
