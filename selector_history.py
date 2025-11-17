@@ -178,7 +178,8 @@ def parse_args() -> argparse.Namespace:
     )
 
     p.add_argument("--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
-    p.add_argument("--address", required=True, help="Contract address to analyze")
+     p.add_argument("--address", required=True, help="Contract address to analyze")
+    p.add_argument("--label", help="Optional label/name for the contract")
     p.add_argument("--abi", required=True, help="Path to ABI JSON file")
     p.add_argument("--start", required=True, help="Start block/tag (inclusive, e.g. 18000000 or latest)")
     p.add_argument("--end", required=True, help="End block/tag (inclusive, e.g. 19000000 or finalized)")
@@ -267,8 +268,9 @@ def main() -> None:
 
     if not args.quiet:
         print(f"🌐 Connected: chainId={chain_id}, tip={tip}", file=sys.stderr)
+              label = f" ({args.label})" if args.label else ""
         print(
-            f"🔍 Scanning {addr} from block {start} to {end} (step={args.step})",
+            f"🔍 Scanning {addr}{label} from block {start} to {end} (step={args.step})",
             file=sys.stderr,
         )
 
