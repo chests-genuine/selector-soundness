@@ -232,6 +232,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     addr = checksum(args.address)
+        # Quick check at latest to see if code exists at all
+    tmp_w3 = connect(args.rpc)
+    if not tmp_w3.eth.get_code(addr):
+        print("⚠️  Target has no contract code at latest block — likely an EOA.", file=sys.stderr)
+
     abi_json = load_abi(args.abi)
     abi_sels = abi_selectors(abi_json)
     if not abi_sels:
