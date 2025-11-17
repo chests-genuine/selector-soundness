@@ -22,7 +22,7 @@ def checksum(addr: str) -> str:
 
 
 def connect(rpc: str) -> Web3:
-    w3 = Web3(Web3.HTTPProvider(rpc, request_kwargs={"timeout": 30}))
+       w3 = Web3(Web3.HTTPProvider(rpc, request_kwargs={"timeout": RPC_TIMEOUT}))
     if not w3.is_connected():
         print("❌ Failed to connect to RPC endpoint.", file=sys.stderr)
         sys.exit(1)
