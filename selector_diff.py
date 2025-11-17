@@ -218,6 +218,11 @@ def diff_blocks(
 #       --block-a 18000000 --block-b 19000000 --json --strict
 
 def parse_args() -> argparse.Namespace:
+        ap.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Suppress human-readable logs (only JSON output if --json is set)",
+    )
     ap = argparse.ArgumentParser(
         description="Diff a contract's function selectors between two blocks.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
