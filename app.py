@@ -226,3 +226,23 @@ print(f"🔸 Bytecode selectors found: {len(bytecode_selectors)}")
 
 if __name__ == "__main__":
     main()
+    def main() -> int:
+    """Minimal CLI: `python app.py --version`."""
+    try:
+        import argparse
+
+        parser = argparse.ArgumentParser(prog="app")
+        parser.add_argument("--version", action="store_true", help="Print version and exit")
+        args = parser.parse_args()
+
+        if args.version:
+            print(__version__)  # noqa: T201 (print ok in CLI)
+        return 0
+    except Exception:
+        # Fail quietly for end users; enable DEBUG logging during development.
+        return 1
+
+
+if __name__ == "__main__":  # pragma: no cover
+    raise SystemExit(main())
+
