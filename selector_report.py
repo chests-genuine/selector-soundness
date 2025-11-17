@@ -148,7 +148,8 @@ def _macro_micro(
     return macro_p, macro_r, macro_f1, micro_p, micro_r, micro_f1
 
 
-def _dq_checks(
+def _pct(part: int, whole: int) -> float:
+    return 100.0 * _safe_div(float(part), float(whole))
     ids: List[str], y_true: List[str], y_pred: List[str], selectors: List[str] | None
 ) -> List[str]:
     issues = []
@@ -167,6 +168,10 @@ def _dq_checks(
     if counts:
         total = sum(counts.values())
         top_label, top_count = max(counts.items(), key=lambda kv: kv[1])
-        if _safe_div(top_count, total) >= 0.9:
+              if _safe_div(top_count, total) >= 0.9:
             issues.append(
-                f"
+                f"• Ground-truth labels are highly imbalanced: "
+                f"{top_label!r} accounts for {top_count}/{total} "
+                f"({ _pct(top_count, total):.1f}%)."
+            )
+
