@@ -103,12 +103,13 @@ def abi_selectors(abi_json: List[Dict[str, Any]]) -> SignatureMap:
         name = entry.get("name")
         if not isinstance(name, str):
             continue
-        inputs = entry.get("inputs") or []
-        types = [inp.get("type", "unknown") for inp in inputs]
-        sig = f"{name}({','.join(types)})"
-        sel = keccak(text=sig)[:4].hex()
-        sig_to_sel[sig] = sel
-    return sig_to_sel
+                inputs = entry.get("inputs") or []
+        types: List[str] = []
+        for inp in inputs:
+            if not isinstance(inp, dict):
+                continue
+            types.append(inp.get("type", "unknown"))
+
 
 
 def parse_push4_selectors(bytecode: bytes) -> SelectorSet:
