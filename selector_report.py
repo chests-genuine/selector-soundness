@@ -1,3 +1,4 @@
+
 # ---- defaults (CSV columns) ----
 DEFAULT_ID_COL = "id"
 DEFAULT_TRUTH_COL = "y_true"
@@ -13,6 +14,18 @@ EXIT_ISSUES = 2  # non-fatal data-quality issues detected
 
 Importing this module has no side effects; all behavior is opt-in via functions/CLI.
 """
+import argparse
+import collections
+import csv
+import datetime as dt
+import pathlib
+import statistics
+from typing import TYPE_CHECKING
+
+from typing import Iterable, List, Tuple, Dict, Any
+from pathlib import Path
+import logging
+
 from __future__ import annotations
 DEFAULT_ID_COL = "id"
 DEFAULT_TRUTH_COL = "y_true"
@@ -22,21 +35,7 @@ DEFAULT_SELECTOR_COL = "selector"
 EXIT_OK = 0
 EXIT_ERROR = 1
 EXIT_ISSUES = 2   # data-quality issues found (non-fatal but flagged)
-import argparse
-import collections
-import csv
-import datetime as dt
-import pathlib
-import statistics
-from typing import TYPE_CHECKING
-if TYPE_CHECKING:  # pragma: no cover
-    # Future type-only imports go here (e.g., from typing_extensions import TypedDict)
-    pass
 
-from typing import Iterable, List, Tuple, Dict, Any
-import csv
-from pathlib import Path
-import logging
 
 logger = logging.getLogger(__name__)
 if not logger.handlers:
