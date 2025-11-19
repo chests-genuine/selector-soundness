@@ -44,6 +44,7 @@ if not logger.handlers:
     logger.propagate = False
 __all__: list[str] = []
 
+# Default text encoding for CSV input/output.
 DEFAULT_ENCODING: str = "utf-8"
 def fmt_float(x: float, places: int = 4) -> str:
     try:
