@@ -298,6 +298,10 @@ def main() -> None:
             print(f"   ⚠️  ABI selectors missing in bytecode (first 10): {missing_in_bytecode[:10]}", file=sys.stderr)
         if extra_in_bytecode:
             print(f"   ⚠️  Selectors in bytecode but not ABI (first 10): {extra_in_bytecode[:10]}", file=sys.stderr)
+                # If user passed --raw-json without --json, still emit JSON
+    if args.raw_json and not args.json:
+        args.json = True
+
     if args.json:
         if args.raw_json:
             print(json.dumps(snapshot, separators=(",", ":"), sort_keys=True))
