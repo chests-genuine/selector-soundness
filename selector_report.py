@@ -37,6 +37,7 @@ from typing import Iterable, List, Tuple, Dict, Any
 import csv
 from pathlib import Path
 import logging
+ConfusionMatrix = Dict[Tuple[str, str], int]
 
 logger = logging.getLogger(__name__)
 if not logger.handlers:
