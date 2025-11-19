@@ -38,6 +38,7 @@ import csv
 from pathlib import Path
 import logging
 
+# Library-friendly logger: no handlers by default, no propagation.
 logger = logging.getLogger(__name__)
 if not logger.handlers:
     logger.addHandler(logging.NullHandler())
