@@ -245,6 +245,12 @@ def main() -> None:
         print("⚠️ Target has no contract code at this block — likely an EOA or pre-deploy.", file=sys.stderr)
     byte_selectors = parse_push4_selectors(code)
     abi_selectors_set = set(abi_map.values())
+    if code and not byte_selectors and not args.quiet:
+        print(
+            "⚠️  No selectors detected in bytecode. "
+            "This contract may use non-standard dispatch (proxy/Yul).",
+            file=sys.stderr,
+        )
 
     missing_in_bytecode = sorted(abi_selectors_set - byte_selectors)
     extra_in_bytecode = sorted(byte_selectors - abi_selectors_set)
