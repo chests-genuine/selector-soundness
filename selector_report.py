@@ -80,34 +80,47 @@ def _read_rows(
     truth_col: str,
     pred_col: str,
     selector_col: str | None,
+    encoding: str = DEFAULT_ENCODING,
 ) -> Tuple[List[str], List[str], List[str], List[str] | None]:
-    ids, y_true, y_pred, selectors = [], [], [], ([] if selector_col else None)
-  """Read labeled CSV rows into parallel lists.
+    """
+    Read labeled CSV rows into parallel lists.
 
     Validates that required columns exist and that id/truth/pred are non-empty
     for every row. Optionally returns a selectors list when selector_col is set.
     """
-    with path.open("r", encoding="utf-8", newline="") as f:
+    ids: List[str] = []
+    y_true: List[str] = []
+    y_pred: List[str] = []
+    selectors: List[str] | None = [] if selector_col else None
+
+    with path.open("r", encoding=encoding, newline="") as f:
         reader = csv.DictReader(f)
         required = {id_col, truth_col, pred_col} | ({selector_col} if selector_col else set())
+        if not reader.fieldnames:
+            raise SystemExit("Input CSV has no header row.")
         missing = [c for c in required if c and c not in reader.fieldnames]
         if missing:
-            raise SystemExit(f"Input CSV is missing columns: {missing} — found {reader.fieldnames}")
+            raise SystemExit(
+                f"Input CSV is missing columns: {missing} — found {reader.fieldnames}"
+            )
 
         for i, row in enumerate(reader, start=2):  # header is line 1
             rid = (row.get(id_col) or "").strip()
             t = (row.get(truth_col) or "").strip()
             p = (row.get(pred_col) or "").strip()
             if not rid or not t or not p:
-                raise SystemExit(f"Line {i}: empty value in one of [{id_col},{truth_col},{pred_col}]")
+                raise SystemExit(
+                    f"Line {i}: empty value in one of [{id_col},{truth_col},{pred_col}]"
+                )
 
             ids.append(rid)
             y_true.append(t)
             y_pred.append(p)
-            if selector_col:
+            if selector_col is not None and selectors is not None:
                 selectors.append((row.get(selector_col) or "").strip())
 
     return ids, y_true, y_pred, selectors
+
 
 
  def _confusion(
