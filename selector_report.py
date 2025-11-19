@@ -123,8 +123,9 @@ def _read_rows(
 
 
 def _safe_div(n: float, d: float) -> float:
-      """Return n / d, or 0.0 if d == 0."""
+    """Return n / d, or 0.0 if d == 0."""
     return n / d if d else 0.0
+
 
 
 def _prf_for_label(
