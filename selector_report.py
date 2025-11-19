@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # ---- defaults (CSV columns) ----
 DEFAULT_ID_COL = "id"
 DEFAULT_TRUTH_COL = "y_true"
@@ -8,7 +9,7 @@ EXIT_OK = 0
 EXIT_ERROR = 1
 EXIT_ISSUES = 2  # non-fatal data-quality issues detected
 
-#!/usr/bin/env python3
+
 """Generate selector soundness reports from CSV inputs.
 
 Importing this module has no side effects; all behavior is opt-in via functions/CLI.
