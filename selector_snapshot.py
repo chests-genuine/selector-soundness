@@ -124,9 +124,12 @@ def parse_push4_selectors(bytecode: bytes) -> SelectorSet:
     n = len(bytecode)
     while i < n:
         op = bytecode[i]
-        if 0x60 <= op <= 0x7F:  # PUSH1..PUSH32
+            if 0x60 <= op <= 0x7F:  # PUSH1..PUSH32
             push_len = op - 0x5F
-            if op == 0x63 and i + 1 + 4 <= n:  # PUSH4
+            if i + 1 + push_len > n:
+                # Truncated PUSH at end of bytecode: stop scanning.
+                break
+            if op == 0x63 and push_len >= 4:  # PUSH4
                 data = bytecode[i + 1 : i + 5]
                 selectors.add(data.hex())
             i += 1 + push_len
