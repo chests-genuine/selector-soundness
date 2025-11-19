@@ -67,9 +67,11 @@ def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> lis
             dialect = csv.Sniffer().sniff(sample, delimiters=[",", ";", "\t", "|"])
         except Exception:
             dialect = csv.excel
-        reader = csv.DictReader(f, dialect=dialect)
-        return [ {k: (v or "").strip() for k, v in row.items()} for row in reader ]
-
+     reader = csv.DictReader(f, dialect=dialect)
+        if reader.fieldnames is None:
+            raise SystemExit(f"{p}: CSV has no header row.")
+    
+ return [{...} ...]
 __all__.extend(["read_csv_dicts", "DEFAULT_ENCODING"])
 
 
