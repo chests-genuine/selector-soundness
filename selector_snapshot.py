@@ -94,9 +94,12 @@ def as_block_id(s: str | None) -> str | int:
 def abi_selectors(abi_json: List[Dict[str, Any]]) -> SignatureMap:
     """
     Return mapping: signature_str -> 4-byte hex selector (no 0x).
+
     Only includes entries with type == 'function'.
     """
     sig_to_sel: Dict[str, str] = {}
+    ...
+
     for entry in abi_json:
         if entry.get("type") != "function":
             continue
