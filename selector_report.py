@@ -46,12 +46,15 @@ __all__: list[str] = []
 
 DEFAULT_ENCODING: str = "utf-8"
 def fmt_float(x: float, places: int = 4) -> str:
+    """Format a value as a fixed-point float string (default 4 decimal places)."""
     try:
         return f"{float(x):.{places}f}"
     except Exception:
         return "0.0000"
 
+
 def fmt_pct(x: float, places: int = 2) -> str:
+    """Format a fraction as a percentage string (default 2 decimal places)."""
     try:
         return f"{float(x) * 100:.{places}f}%"
     except Exception:
