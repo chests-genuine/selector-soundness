@@ -258,7 +258,7 @@ def main() -> None:
         "rpc": args.rpc,
         "chainId": int(chain_id),
         "address": addr,
-        "blockNumber": int(block_id),
+                "blockNumber": resolved_block,
         "timestamp": int(blk.timestamp),
         "timestampUtc": fmt_utc(blk.timestamp),
         "bytecodeLength": len(code),
