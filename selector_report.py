@@ -58,7 +58,11 @@ def fmt_pct(x: float, places: int = 2) -> str:
         return "0.00%"
 
 def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> list[dict[str, str]]:
-    """Read CSV as list-of-dicts, with delimiter sniffing fallback."""
+    """
+    Read a CSV into a list-of-dicts with basic delimiter sniffing.
+
+    All values are stripped of surrounding whitespace and never None (empty -> "").
+    """
     p = Path(path)
     with p.open("r", encoding=encoding, newline="") as f:
         sample = f.read(1024)
@@ -68,7 +72,8 @@ def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> lis
         except Exception:
             dialect = csv.excel
         reader = csv.DictReader(f, dialect=dialect)
-        return [ {k: (v or "").strip() for k, v in row.items()} for row in reader ]
+        return [{k: (v or "").strip() for k, v in row.items()} for row in reader]
+
 
 __all__.extend(["read_csv_dicts", "DEFAULT_ENCODING"])
 
