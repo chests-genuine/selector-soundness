@@ -56,12 +56,20 @@ def connect(rpc: str, timeout: float = RPC_TIMEOUT) -> Web3:
 
 
 def load_json(path: str) -> Any:
+    """
+    Load JSON from a file path or exit with an error on failure.
+    """
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
+    except FileNotFoundError:
+        print(f"❌ File not found: {path}", file=sys.stderr)
+    except json.JSONDecodeError as e:
+        print(f"❌ Invalid JSON in {path}: {e}", file=sys.stderr)
     except Exception as e:
         print(f"❌ Failed to load JSON from {path}: {e}", file=sys.stderr)
-        sys.exit(2)
+    sys.exit(2)
+
 
 
 def fmt_utc(ts: int) -> str:
