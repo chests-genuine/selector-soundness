@@ -254,11 +254,11 @@ def main() -> None:
     byte_commit = selector_commitment(byte_selectors)
 
     snapshot = {
-        "hasBytecode": bool(code),
         "rpc": args.rpc,
         "chainId": int(chain_id),
         "address": addr,
-        "blockNumber": int(block_id),
+        "blockNumber": resolved_block,
+        "hasBytecode": bool(code),
         "timestamp": int(blk.timestamp),
         "timestampUtc": fmt_utc(blk.timestamp),
         "bytecodeLength": len(code),
