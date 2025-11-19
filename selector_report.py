@@ -80,6 +80,7 @@ def _read_rows(
     truth_col: str,
     pred_col: str,
     selector_col: str | None,
+    encoding: str = DEFAULT_ENCODING,
 ) -> Tuple[List[str], List[str], List[str], List[str] | None]:
     ids, y_true, y_pred, selectors = [], [], [], ([] if selector_col else None)
   """Read labeled CSV rows into parallel lists.
@@ -87,7 +88,7 @@ def _read_rows(
     Validates that required columns exist and that id/truth/pred are non-empty
     for every row. Optionally returns a selectors list when selector_col is set.
     """
-    with path.open("r", encoding="utf-8", newline="") as f:
+      with path.open("r", encoding=encoding, newline="") as f:
         reader = csv.DictReader(f)
         required = {id_col, truth_col, pred_col} | ({selector_col} if selector_col else set())
         missing = [c for c in required if c and c not in reader.fieldnames]
