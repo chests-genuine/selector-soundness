@@ -42,7 +42,27 @@ logger = logging.getLogger(__name__)
 if not logger.handlers:
     logger.addHandler(logging.NullHandler())
     logger.propagate = False
-__all__: list[str] = []
+__all__: list[str] = [
+    "DEFAULT_ID_COL",
+    "DEFAULT_TRUTH_COL",
+    "DEFAULT_PRED_COL",
+    "DEFAULT_SELECTOR_COL",
+    "EXIT_OK",
+    "EXIT_ERROR",
+    "EXIT_ISSUES",
+    "DEFAULT_ENCODING",
+    "fmt_float",
+    "fmt_pct",
+    "read_csv_dicts",
+    "_read_rows",
+    "_confusion",
+    "_safe_div",
+    "_prf_for_label",
+    "_macro_micro",
+    "_pct",
+    "_data_issues",
+]
+
 
 DEFAULT_ENCODING: str = "utf-8"
 def fmt_float(x: float, places: int = 4) -> str:
@@ -70,7 +90,7 @@ def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> lis
         reader = csv.DictReader(f, dialect=dialect)
         return [ {k: (v or "").strip() for k, v in row.items()} for row in reader ]
 
-__all__.extend(["read_csv_dicts", "DEFAULT_ENCODING"])
+
 
 
 def _read_rows(
