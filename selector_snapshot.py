@@ -274,11 +274,12 @@ def main() -> None:
 
     if not args.quiet:
         print(f"🌐 chainId={chain_id}  addr={addr}", file=sys.stderr)
-             print(
+                  print(
             f"📦 block={snapshot['blockNumber']}  ts={snapshot['timestampUtc']}  "
             f"byteLen={snapshot['bytecodeLength']}",
             file=sys.stderr,
-        
+        )
+
         )
          # snapshot['blockNumber'] == resolved_block
         print(
