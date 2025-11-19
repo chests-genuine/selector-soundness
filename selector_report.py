@@ -110,16 +110,12 @@ def _read_rows(
     return ids, y_true, y_pred, selectors
 
 
- def _confusion(
-    y_true: Iterable[str], y_pred: Iterable[str]
-) -> Tuple[List[str], Dict[Tuple[str, str], int]]:
+def _confusion(y_true: Iterable[str], y_pred: Iterable[str]) -> Tuple[List[str], ConfusionMatrix]:
     """Build a confusion matrix as a dict keyed by (truth, pred) pairs."""
-
-    y_true: Iterable[str], y_pred: Iterable[str]
-) -> Tuple[List[str], Dict[Tuple[str, str], int]]:
     labels = sorted(set(y_true) | set(y_pred))
-    counts: Dict[Tuple[str, str], int] = collections.Counter(zip(y_true, y_pred))
+    counts: ConfusionMatrix = collections.Counter(zip(y_true, y_pred))
     return labels, counts
+
 
 
 def _safe_div(n: float, d: float) -> float:
