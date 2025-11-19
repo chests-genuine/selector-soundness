@@ -144,15 +144,21 @@ def _prf_for_label(
 
 
 def _macro_micro(
-    labels: List[str], cm: Dict[Tuple[str, str], int]
+    labels: List[str],
+    cm: ConfusionMatrix,
 ) -> Tuple[float, float, float, float, float, float]:
-     # macro: simple average over per-label P/R/F1
+    """
+    Compute macro- and micro-averaged precision/recall/F1.
+
+    Returns: (macro_p, macro_r, macro_f1, micro_p, micro_r, micro_f1).
+    """
+    # macro: simple average over per-label P/R/F1
     per_label = [_prf_for_label(l, labels, cm) for l in labels]
     macro_p = statistics.fmean(p for p, _, _ in per_label) if per_label else 0.0
     macro_r = statistics.fmean(r for _, r, _ in per_label) if per_label else 0.0
     macro_f1 = statistics.fmean(f for _, _, f in per_label) if per_label else 0.0
 
-       # micro: single global confusion over all labels; here equivalent to accuracy
+    # micro: single global confusion over all labels; here equivalent to accuracy
     tp = sum(cm.get((l, l), 0) for l in labels)
     total = sum(cm.values())
     micro_acc = _safe_div(tp, total)
