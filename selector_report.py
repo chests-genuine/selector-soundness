@@ -7,7 +7,7 @@ DEFAULT_SELECTOR_COL = "selector"
 EXIT_OK = 0
 EXIT_ERROR = 1
 EXIT_ISSUES = 2  # non-fatal data-quality issues detected
-
+  "logger",
 #!/usr/bin/env python3
 """Generate selector soundness reports from CSV inputs.
 
@@ -42,7 +42,28 @@ logger = logging.getLogger(__name__)
 if not logger.handlers:
     logger.addHandler(logging.NullHandler())
     logger.propagate = False
-__all__: list[str] = []
+__all__: list[str] = [
+    "DEFAULT_ID_COL",
+    "DEFAULT_TRUTH_COL",
+    "DEFAULT_PRED_COL",
+    "DEFAULT_SELECTOR_COL",
+    "EXIT_OK",
+    "EXIT_ERROR",
+    "EXIT_ISSUES",
+    "DEFAULT_ENCODING",
+    "fmt_float",
+      "logger",
+    "fmt_pct",
+    "read_csv_dicts",
+    "_read_rows",
+    "_confusion",
+    "_safe_div",
+    "_prf_for_label",
+    "_macro_micro",
+    "_pct",
+    "_data_issues",
+]
+
 
 DEFAULT_ENCODING: str = "utf-8"
 def fmt_float(x: float, places: int = 4) -> str:
