@@ -30,8 +30,9 @@ import pathlib
 import statistics
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover
-    # Future type-only imports go here (e.g., from typing_extensions import TypedDict)
-    pass
+    # Place type-only imports here, e.g.:
+    # from typing_extensions import TypedDict
+pass
 
 from typing import Iterable, List, Tuple, Dict, Any
 import csv
