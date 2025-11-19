@@ -113,11 +113,9 @@ def abi_selectors(abi_json: List[Dict[str, Any]]) -> SignatureMap:
 
 def parse_push4_selectors(bytecode: bytes) -> SelectorSet:
     """
-    Heuristically extract 4-byte selectors from runtime bytecode.
+    Heuristically extract 4-byte selectors from EVM runtime bytecode.
 
-    Scan for PUSH4 (0x63) opcodes followed by 4 bytes, which matches
-    the common Solidity dispatcher pattern:
-        PUSH4 <selector> ; EQ ; ...
+    Returns a set of lowercase hex strings (8 chars, no 0x).
     """
     selectors: Set[str] = set()
     i = 0
