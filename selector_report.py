@@ -162,14 +162,26 @@ def _macro_micro(
 
 
 def _pct(part: int, whole: int) -> float:
+    """Return percentage (0–100) of part/whole, safe on zero division."""
     return 100.0 * _safe_div(float(part), float(whole))
-    ids: List[str], y_true: List[str], y_pred: List[str], selectors: List[str] | None
+
+
+def _data_issues(
+    ids: List[str],
+    y_true: List[str],
+    y_pred: List[str],
+    selectors: List[str] | None,
 ) -> List[str]:
-    issues = []
+    """
+    Inspect basic data-quality issues and return a list of human-readable bullets.
+    """
+    issues: List[str] = []
+
     # Duplicate IDs
     dup = [k for k, v in collections.Counter(ids).items() if v > 1]
     if dup:
         issues.append(f"• Duplicate IDs detected: {len(dup)} (examples: {dup[:5]})")
+
     # Selector coverage (if provided)
     if selectors is not None:
         empty_sel = sum(1 for s in selectors if not s)
@@ -186,10 +198,12 @@ def _pct(part: int, whole: int) -> float:
     if counts:
         total = sum(counts.values())
         top_label, top_count = max(counts.items(), key=lambda kv: kv[1])
-              if _safe_div(top_count, total) >= 0.9:
+        if _safe_div(top_count, total) >= 0.9:
             issues.append(
-                f"• Ground-truth labels are highly imbalanced: "
+                "• Ground-truth labels are highly imbalanced: "
                 f"{top_label!r} accounts for {top_count}/{total} "
-                f"({ _pct(top_count, total):.1f}%)."
+                f"({_pct(top_count, total):.1f}%)."
             )
+
+    return issues
 
