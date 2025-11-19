@@ -273,7 +273,8 @@ def main() -> None:
     }
 
     if not args.quiet:
-        print(f"🌐 chainId={chain_id}  addr={addr}", file=sys.stderr)
+               label_str = f"  label={args.label!r}" if args.label else ""
+        print(f"🌐 chainId={chain_id}  addr={addr}{label_str}", file=sys.stderr)
              print(
             f"📦 block={snapshot['blockNumber']}  ts={snapshot['timestampUtc']}  "
             f"byteLen={snapshot['bytecodeLength']}",
