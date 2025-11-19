@@ -200,6 +200,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
+    if getattr(args, "version", False):
+        print(__version__)
+        return
+
+
     addr = checksum(args.address)
     abi_json = load_json(args.abi)
       if not isinstance(abi_json, list):
