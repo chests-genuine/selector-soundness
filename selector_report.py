@@ -3,10 +3,11 @@ DEFAULT_ID_COL = "id"
 DEFAULT_TRUTH_COL = "y_true"
 DEFAULT_PRED_COL = "y_pred"
 DEFAULT_SELECTOR_COL = "selector"
-# ---- conventional exit codes ----
+# Conventional exit codes
 EXIT_OK = 0
 EXIT_ERROR = 1
-EXIT_ISSUES = 2  # non-fatal data-quality issues detected
+EXIT_ISSUES = 2   # data-quality issues found (non-fatal but flagged)
+
 
 #!/usr/bin/env python3
 """Generate selector soundness reports from CSV inputs.
