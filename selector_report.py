@@ -72,6 +72,9 @@ def read_csv_dicts(path: str | Path, *, encoding: str = DEFAULT_ENCODING) -> lis
 
 __all__.extend(["read_csv_dicts", "DEFAULT_ENCODING"])
 
+def now_utc_iso() -> str:
+    """Return current UTC time in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)."""
+    return dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
 
 def _read_rows(
     path: Path,
