@@ -198,6 +198,9 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """
+    CLI entry point: snapshot a contract's 4-byte selector surface at a given block.
+    """
     args = parse_args()
 
     addr = checksum(args.address)
