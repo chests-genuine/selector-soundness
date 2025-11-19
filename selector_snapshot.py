@@ -73,7 +73,9 @@ def _is_block_tag(value: str) -> bool:
 
 def as_block_id(s: str | None) -> str | int:
     """
-    Accept either an integer-like string (decimal / 0xHEX) or a tag:
+    Convert a CLI block string into either an integer block number or a tag.
+
+    Accepts decimal, 0x-prefixed hex, or tags:
     latest | finalized | safe | earliest | pending
     """
     if s is None:
@@ -84,8 +86,14 @@ def as_block_id(s: str | None) -> str | int:
     try:
         return int(s, 0)
     except Exception:
-        print(f"❌ Invalid block identifier: {s!r}", file=sys.stderr)
+        print(
+            f"❌ Invalid block identifier: {s!r}. Expected a block tag "
+            "(latest|finalized|safe|earliest|pending) or a number "
+            "(decimal or 0x-prefixed hex).",
+            file=sys.stderr,
+        )
         sys.exit(2)
+
 
 
 # --- selector logic --------------------------------------------------------
