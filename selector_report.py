@@ -1,3 +1,9 @@
+"""Generate selector soundness reports from CSV inputs.
+
+This module provides helpers to read labeled CSVs, compute confusion statistics,
+and surface basic data-quality issues. Importing has no side effects.
+"""
+
 # ---- defaults (CSV columns) ----
 DEFAULT_ID_COL = "id"
 DEFAULT_TRUTH_COL = "y_true"
