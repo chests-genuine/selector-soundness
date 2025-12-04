@@ -76,12 +76,13 @@ def abi_function_signatures(abi: List[Dict[str, Any]]) -> Dict[str, str]:
         name = entry.get("name")
         if not name:
             continue
-              inputs = entry.get("inputs") or []
+        inputs = entry.get("inputs") or []
         types = [inp.get("type", "unknown") for inp in inputs]
         signature = f"{name}({','.join(types)})"
         selector = keccak(text=signature)[:4].hex()
         sig_to_selector[signature] = selector
     return sig_to_selector
+
 
 
 def parse_push4_selectors(bytecode: bytes) -> Set[str]:
