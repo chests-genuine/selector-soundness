@@ -175,17 +175,25 @@ def diff_selector_sets(prev: Set[str], curr: Set[str]) -> Tuple[List[str], List[
 #       --step 100 --json --csv history.csv
 
 def parse_args() -> argparse.Namespace:
-     p = argparse.ArgumentParser(
+    p = argparse.ArgumentParser(
         description="Scan selector surface over a block range and report changes.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
     p.add_argument("--rpc", default=DEFAULT_RPC, help="EVM RPC URL (default from RPC_URL)")
-     p.add_argument("--address", required=True, help="Contract address to analyze")
+    p.add_argument("--address", required=True, help="Contract address to analyze")
     p.add_argument("--label", help="Optional label/name for the contract")
     p.add_argument("--abi", required=True, help="Path to ABI JSON file")
-    p.add_argument("--start", required=True, help="Start block/tag (inclusive, e.g. 18000000 or latest)")
-    p.add_argument("--end", required=True, help="End block/tag (inclusive, e.g. 19000000 or finalized)")
+    p.add_argument(
+        "--start",
+        required=True,
+        help="Start block/tag (inclusive, e.g. 18000000 or latest)",
+    )
+    p.add_argument(
+        "--end",
+        required=True,
+        help="End block/tag (inclusive, e.g. 19000000 or finalized)",
+    )
     p.add_argument(
         "--step",
         type=int,
@@ -207,7 +215,7 @@ def parse_args() -> argparse.Namespace:
         "--csv",
         help="Optional CSV output path (one row per sampled block)",
     )
-     p.add_argument(
+    p.add_argument(
         "--quiet",
         action="store_true",
         help="Suppress human-readable logs on stderr",
@@ -218,6 +226,7 @@ def parse_args() -> argparse.Namespace:
         help="Exit with code 2 if any selector changes are observed",
     )
     return p.parse_args()
+
 
 def parse_block_arg(w3: Web3, value: str) -> int:
     low = value.lower()
