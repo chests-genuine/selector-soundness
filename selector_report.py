@@ -201,4 +201,26 @@ def _pct(part: int, whole: int) -> float:
                 f"{top_label!r} accounts for {top_count}/{total} "
                 f"({ _pct(top_count, total):.1f}%)."
             )
+def main() -> int:
+    """Placeholder CLI entrypoint for future selector soundness reports."""
+    parser = argparse.ArgumentParser(
+        description="Generate selector soundness reports from CSV inputs.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    parser.add_argument(
+        "--version",
+        action="store_true",
+        help="Print module version information and exit.",
+    )
+    args = parser.parse_args()
+    if args.version:
+        print("selector_report (version not set)")
+        return EXIT_OK
+
+    parser.print_help()
+    return EXIT_OK
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
 
