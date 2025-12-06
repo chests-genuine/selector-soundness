@@ -401,7 +401,7 @@ def main() -> None:
         speed = blocks_scanned / elapsed if elapsed > 0 else 0.0
         print(f"\n⏱️  Elapsed: {elapsed:.2f}s for {blocks_scanned} blocks ({speed:.2f} blocks/s)", file=sys.stderr)
 
-    if args.json:
+       if args.json:
         out = {
             "rpc": args.rpc,
             "chainId": int(chain_id),
@@ -410,13 +410,12 @@ def main() -> None:
             "startBlock": start,
             "endBlock": end,
             "step": args.step,
-                    # Use wall-clock time (UTC) for report generation timestamp
-        out = {
+            # Use wall-clock time (UTC) for report generation timestamp
             "generatedAtUtc": fmt_utc(int(time.time())),
             "records": records,
         }
-
         print(json.dumps(out, indent=2, sort_keys=True))
+        return
 
 
 if __name__ == "__main__":
