@@ -228,9 +228,9 @@ def main() -> None:
     if args.chain_id is not None:
         print(f"ℹ️  Overriding chainId {chain_id} with {args.chain_id}", file=sys.stderr)
         chain_id = args.chain_id
-    block_id = as_block_id(args.block)
 
-    block_id = as_block_id(args.block)
+
+   block_id = as_block_id(args.block)
 
     # Resolve block number
     if isinstance(block_id, int):
