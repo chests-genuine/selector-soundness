@@ -232,18 +232,7 @@ def parse_block_arg(w3: Web3, value: str) -> int:
 def main() -> None:
     args = parse_args()
 
-    if args.start < 0 or args.end < 0:
-        print("❌ --start and --end must be >= 0", file=sys.stderr)
-        sys.exit(2)
-    if args.step <= 0:
-        print("❌ --step must be > 0", file=sys.stderr)
-        sys.exit(2)
 
-    start, end = args.start, args.end
-    if start > end:
-        start, end = end, start
-        if not args.quiet:
-            print("🔄 Swapped start/end for ascending range.", file=sys.stderr)
 
     addr = checksum(args.address)
 
@@ -261,9 +250,22 @@ def main() -> None:
     w3 = connect(args.rpc, timeout=args.timeout)
     chain_id = w3.eth.chain_id
     tip = w3.eth.block_number
-# Resolve block arguments
+
+    # Resolve block arguments
     start = parse_block_arg(w3, args.start)
     end = parse_block_arg(w3, args.end)
+
+    if start < 0 or end < 0:
+        print("❌ --start and --end must resolve to >= 0", file=sys.stderr)
+        sys.exit(2)
+    if args.step <= 0:
+        print("❌ --step must be > 0", file=sys.stderr)
+        sys.exit(2)
+    if start > end:
+        start, end = end, start
+        if not args.quiet:
+            print("🔄 Swapped start/end for ascending range.", file=sys.stderr)
+
     if end > tip:
         if not args.quiet:
             print(f"⚠️ end block {end} > tip {tip}; clamping to tip.", file=sys.stderr)
