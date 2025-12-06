@@ -109,6 +109,12 @@ def _read_rows(
             y_pred.append(p)
             if selector_col:
                 selectors.append((row.get(selector_col) or "").strip())
+    logger.debug(
+        "Loaded %d rows from %s (labels: %d unique)",
+        len(ids),
+        path,
+        len(set(y_true)),
+    )
 
     return ids, y_true, y_pred, selectors
 
