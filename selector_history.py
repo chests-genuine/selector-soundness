@@ -202,6 +202,15 @@ def parse_args() -> argparse.Namespace:
         help="Step size between sampled blocks (e.g. 1 = every block)",
     )
     p.add_argument(
+    "--json",
+    action="store_true",
+    help="Emit machine-readable JSON summary to stdout.",
+)
+p.add_argument(
+    "--csv",
+    help="Optional path to write per-block history as CSV.",
+)
+    p.add_argument(
         "--timeout",
         type=int,
         default=RPC_TIMEOUT,
