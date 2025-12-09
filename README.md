@@ -21,6 +21,7 @@ A tiny CLI to assess smart contract soundness by comparing function selectors de
    or pass --rpc explicitly.
 
 ## Usage
+## Companion tools
 Minimal run (informational soundness scan):
    python app.py --address 0xYourContract --abi ./YourContract.abi.json
 
