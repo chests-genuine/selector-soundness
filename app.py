@@ -11,6 +11,8 @@ import argparse
 from contextlib import contextmanager
 from time import perf_counter
 
+__version__ = "0.1.0"
+
 @contextmanager
 def time_block(name: str):
     """Measure elapsed time for a code block and log it at DEBUG."""
@@ -127,10 +129,18 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--block", default="finalized", help="Block tag or number (default: finalized)")
     p.add_argument("--timeout", type=int, default=30, help="HTTP timeout seconds (default: 30)")
     p.add_argument("--json", action="store_true", help="Emit machine-readable JSON")
+    p.add_argument(
+    "--version",
+    action="store_true",
+    help="Print selector-soundness version and exit.",
+)
     return p.parse_args()
 
 def main() -> None:
     args = parse_args()
+    if args.version:
+    print(f"selector-soundness {__version__}")
+    sys.exit(0)
     w3 = Web3(Web3.HTTPProvider(args.rpc, request_kwargs={"timeout": args.timeout}))
     if not w3.is_connected():
         print("❌ RPC connection failed. Check --rpc or RPC_URL.")
