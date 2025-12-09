@@ -230,8 +230,6 @@ def main() -> None:
         chain_id = args.chain_id
     block_id = as_block_id(args.block)
 
-    block_id = as_block_id(args.block)
-
     # Resolve block number
     if isinstance(block_id, int):
         blk = w3.eth.get_block(block_id)
