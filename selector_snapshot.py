@@ -40,12 +40,17 @@ __all__ = [
 
 # --- helpers ---------------------------------------------------------------
 
-
 def checksum(addr: str) -> str:
+    """
+    Validate and return an EIP-55 checksum address.
+
+    Exits with code 2 if the address is not a valid Ethereum address.
+    """
     if not isinstance(addr, str) or not Web3.is_address(addr):
-             print(f"❌ Invalid Ethereum address: {addr!r}", file=sys.stderr)
+        print(f"❌ Invalid Ethereum address: {addr!r}", file=sys.stderr)
         sys.exit(2)
     return Web3.to_checksum_address(addr)
+
 
 
 def connect(rpc: str, timeout: float = RPC_TIMEOUT) -> Web3:
