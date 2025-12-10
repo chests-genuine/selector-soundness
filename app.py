@@ -10,6 +10,14 @@ import time  # add this with your imports if not already there
 import argparse
 from contextlib import contextmanager
 from time import perf_counter
+import logging
+
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+    logger.addHandler(logging.NullHandler())
+logger.propagate = False
+
+__all__: list[str] = []
 
 @contextmanager
 def time_block(name: str):
