@@ -36,7 +36,9 @@ __all__ = [
     "abi_selectors",
     "parse_push4_selectors",
     "selector_commitment",
+    "main",
 ]
+
 
 # --- helpers ---------------------------------------------------------------
 
