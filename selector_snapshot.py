@@ -318,6 +318,8 @@ def main() -> None:
         if extra_in_bytecode:
             print(f"   ⚠️  Selectors in bytecode but not ABI (first 10): {extra_in_bytecode[:10]}", file=sys.stderr)
     if args.json:
+        ok = not missing_in_bytecode and not extra_in_bytecode
+sys.exit(0 if ok else 2)
         if args.raw_json:
             print(json.dumps(snapshot, separators=(",", ":"), sort_keys=True))
         else:
