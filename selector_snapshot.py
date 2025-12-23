@@ -16,6 +16,11 @@ import json
 import time
 import argparse
 from typing import Any, Dict, List, Set
+# Type aliases for selector-related values:
+# - SelectorHex: lowercase hex without 0x, exactly 8 characters (4 bytes).
+# - SelectorSet: a set of SelectorHex.
+# - SignatureMap: "foo(uint256)" -> SelectorHex.
+
 SelectorHex = str            # 8 hex chars, no 0x
 SelectorSet = Set[SelectorHex]
 SignatureMap = Dict[str, SelectorHex]  # "foo(uint256)" -> selector
