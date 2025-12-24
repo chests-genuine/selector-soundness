@@ -228,6 +228,8 @@ def parse_args() -> argparse.Namespace:
     )
     return p.parse_args()
 
+def _preview_suffix(total: int, limit: int = MAX_PREVIEW) -> str:
+    return " …" if total > limit else ""
 
 def parse_block_arg(w3: Web3, value: str) -> int:
     low = value.lower()
@@ -354,12 +356,13 @@ def main() -> None:
                         f"gained={len(gained)}, lost={len(lost)}",
                         file=sys.stderr,
                     )
-                    if preview_gained:
-                        suff = " …" if len(gained) > MAX_PREVIEW else ""
+                                     if preview_gained:
+                        suff = _preview_suffix(len(gained))
                         print(f"     + {preview_gained}{suff}", file=sys.stderr)
                     if preview_lost:
-                        suff = " …" if len(lost) > MAX_PREVIEW else ""
+                        suff = _preview_suffix(len(lost))
                         print(f"     - {preview_lost}{suff}", file=sys.stderr)
+
                 else:
                     print(base_line, file=sys.stderr)
 
