@@ -166,51 +166,54 @@ def selector_commitment(selectors: SelectorSet) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-     ap = argparse.ArgumentParser(
+    ap = argparse.ArgumentParser(
         description="Snapshot a contract's selector surface at a single block.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     ap.add_argument("-r", "--rpc", default=DEFAULT_RPC, help="RPC URL (default from RPC_URL)")
-       ap.add_argument("-a", "--address", required=True, help="Contract address (0x...)")
+    ap.add_argument("-a", "--address", required=True, help="Contract address (0x...)")
     ap.add_argument(
         "--label",
         help="Optional label/name for the contract (for logs only)",
     )
     ap.add_argument("--abi", required=True, help="Path to ABI JSON file")
-     ap.add_argument(
+    ap.add_argument(
         "--block",
         help="Block number or tag (latest|finalized|safe|earliest|pending, default: latest)",
     )
-
     ap.add_argument(
         "--timeout",
         type=float,
         default=RPC_TIMEOUT,
         help="RPC HTTP timeout in seconds",
     )
-      ap.add_argument(
+    ap.add_argument(
         "--json",
         action="store_true",
         help="Emit JSON snapshot to stdout (in addition to logs)",
     )
-       ap.add_argument(
+    ap.add_argument(
         "--raw-json",
         action="store_true",
         help="Emit compact JSON (no pretty-printing)",
     )
-
     ap.add_argument(
         "--quiet",
         action="store_true",
         help="Suppress human-readable logs on stderr",
     )
-        ap.add_argument(
+    ap.add_argument(
         "--chain-id",
         type=int,
         help="Override chain ID reported by RPC",
     )
-
+    ap.add_argument(
+        "--version",
+        action="store_true",
+        help="Print version and exit",
+    )
     return ap.parse_args()
+
 
 
 # --- main ------------------------------------------------------------------
